@@ -57,10 +57,10 @@
                         <label>Harga</label>
                         <input type="number" name="harga" id="price" readonly class="form-control" required>
                     </div>
-                    <div class="form-group">
-                        <label>Keterangan</label>
+                    <!-- <div class="form-group"> -->
+                        <!-- <label>Keterangan</label> -->
                         <input type="hidden" name="keterangan" value="pesan" class="form-control" required>
-                    </div>
+                    <!-- </div> -->
                     <button class="btn btn-success" name="create">Tambah</button>
                     <a href="index.php" class="btn btn-warning">Kembali</a>
                 </form>
@@ -81,7 +81,7 @@
 
 
 <?php
-    require_once 'layouts/footer.php';
+    require_once '../layouts/footer.php';
 ?>
 
 

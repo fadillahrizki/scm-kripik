@@ -19,6 +19,35 @@
     $bahan = get("tb_bahan_baku");
 
 ?>
+<style>
+
+.text-print{
+    display: none;
+}
+
+@media print{
+    body  {
+        visibility: hidden;
+    }
+
+    .hide-print {
+        display: none;
+    }
+
+    .text-print{
+        display: block;
+    }
+
+    #print {
+        visibility: visible;
+        position: fixed;
+        top:0;
+        left:0;
+        width: 100%;
+    }
+}
+
+</style>
 
 <div class="row">
     <div class="col-12">
@@ -26,46 +55,72 @@
             <div class="card-body">
                 <div class="d-flex justify-content-between py-3">
                     <h5>Data Bahan Baku</h5>
+                    <div>
+                    <button class="btn btn-primary btn-sm" type="button" onclick="window.print()">Cetak</button>
                     <a href="create.php" class="btn btn-success btn-sm">Tambah</a>
+                    </div>
                 </div>
                 <?php if(isset($success)): ?>
                     <div class="alert alert-success">Berhasil menghapus data</div>
                 <?php elseif(isset($failed)): ?>
                     <div class="alert alert-danger">Gagal menghapus data</div>
                 <?php endif ?>
-                <table class="table table-stripped">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Nama</th>
-                            <th>Harga</th>
-                            <th>Stok</th>
-                            <th>Keterangan</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php if(count($bahan) > 0): ?>
-                            <?php foreach($bahan as $bahan_baku): ?>
+                <div id="print">
+                    <div class="text-center py-3 text-print">
+                        <table width="100%">
                             <tr>
-                                <td><?= $bahan_baku["id"] ?></td>
-                                <td><?= $bahan_baku["nama_bahan_baku"] ?></td>
-                                <td><?= number_format($bahan_baku["harga"]) ?></td>
-                                <td><?= $bahan_baku["stok"] ?></td>
-                                <td><?= $bahan_baku["keterangan"] ?></td>
+                                <td width="100px">
+                                    <img src="../assets/logo.jpeg" width="100%">
+                                </td>
                                 <td>
-                                    <a href="edit.php?id=<?=$bahan_baku['id']?>" class="badge badge-warning">Edit</a>
-                                    <a href="index.php?delete=<?=$bahan_baku['id']?>" class="badge badge-danger">Hapus</a>
+                                    <center>
+                                    <h4>UD SELASIH SENTANG</h4>
+                                    <p>Jl. Jahe Lk IV No 34 Sentang, Kisaran Timur</p>
+                                    </center>
+                                </td>
+                            </tr>    
+                            <tr>
+                                <td colspan="2">
+                                    <hr>
+                                    <h3>Data Bahan Baku</h3>
                                 </td>
                             </tr>
-                            <?php endforeach ?>
-                        <?php else: ?>
-                            <tr class="text-center">
-                                <td colspan="6">Tidak ada Data</td>
+                        </table>
+                    </div>
+                    <table class="table table-stripped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nama</th>
+                                <th>Harga</th>
+                                <th>Stok</th>
+                                <th>Keterangan</th>
+                                <th>Aksi</th>
                             </tr>
-                        <?php endif ?>
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            <?php if(count($bahan) > 0): ?>
+                                <?php foreach($bahan as $bahan_baku): ?>
+                                <tr>
+                                    <td><?= $bahan_baku["id"] ?></td>
+                                    <td><?= $bahan_baku["nama_bahan_baku"] ?></td>
+                                    <td><?= number_format($bahan_baku["harga"]) ?></td>
+                                    <td><?= $bahan_baku["stok"] ?></td>
+                                    <td><?= $bahan_baku["keterangan"] ?></td>
+                                    <td>
+                                        <a href="edit.php?id=<?=$bahan_baku['id']?>" class="badge badge-warning hide-print">Edit</a>
+                                        <a href="index.php?delete=<?=$bahan_baku['id']?>" class="badge badge-danger hide-print">Hapus</a>
+                                    </td>
+                                </tr>
+                                <?php endforeach ?>
+                            <?php else: ?>
+                                <tr class="text-center">
+                                    <td colspan="6">Tidak ada Data</td>
+                                </tr>
+                            <?php endif ?>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

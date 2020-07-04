@@ -2,6 +2,8 @@
     $current = "faktur pembelian";
     require_once '../layouts/header.php';
 
+    $pembelian = [];
+
     if(isset($_GET['filter'])){
         $pembelian = getFaktur($_SESSION['user']['id'],$_GET);
     }
@@ -41,11 +43,11 @@
                 <form method="get" class="py-3 d-flex justify-content-start">    
                     <div class="form-group">
                         <label>Dari tanggal</label>
-                        <input type="date" name="from" class="form-control">
+                        <input type="date" value="<?=@$_GET['from']?>" name="from" class="form-control">
                     </div>
                     <div class="form-group mx-3">
                         <label>Sampai tanggal</label>
-                        <input type="date" name="to" class="form-control">
+                        <input type="date" value="<?=@$_GET['to']?>" name="to" class="form-control">
                     </div>
                     <div class="form-group">
                         <label>&nbsp;</label>
@@ -58,8 +60,25 @@
                 </form>
                 <div id="print">
                     <div class="text-center py-3 text-print">
-                        <h4>UD SELASIH SENTANG</h4>
-                        <p>Jln. Sentang Kisaran No.4,Asahan, Sumatera Utara</p>
+                        <table width="100%">
+                            <tr>
+                                <td width="100px">
+                                    <img src="../assets/logo.jpeg" width="100%">
+                                </td>
+                                <td>
+                                    <center>
+                                    <h4>UD SELASIH SENTANG</h4>
+                                    <p>Jl. Jahe Lk IV No 34 Sentang, Kisaran Timur</p>
+                                    </center>
+                                </td>
+                            </tr>    
+                            <tr>
+                                <td colspan="2">
+                                    <hr>
+                                    <h3>Faktur Penjualan</h3>
+                                </td>
+                            </tr>
+                        </table>
                     </div>
                     <table class="table table-stripped">
                         <thead>
@@ -93,6 +112,8 @@
                                         <span class="badge badge-danger"><?= $pem["keterangan"] ?></span>
                                     <?php elseif($pem['keterangan']=='selesai'): ?>
                                         <span class="badge badge-success"><?= $pem["keterangan"] ?></span>
+                                    <?php elseif($pem['keterangan']=='ditolak'): ?>
+                                        <span class="badge badge-danger"><?= $pem["keterangan"] ?></span>
                                     <?php endif ?>
                                     </td>
                                     <td><?= number_format($pem["total"]) ?></td>
