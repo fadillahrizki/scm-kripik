@@ -145,6 +145,7 @@ function updateBahan($data,$nama){
 
 function delete($tbl,$id){
     global $conn;
+    $id = is_numeric($id) ? $id : "'$id'";
     $query = "DELETE FROM $tbl WHERE id=$id";
     $res = $conn->query($query);
     return $res;
