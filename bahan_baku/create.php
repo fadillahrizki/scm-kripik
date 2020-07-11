@@ -36,6 +36,10 @@
                         <input type="number" name="stok" class="form-control" required>
                     </div>
                     <div class="form-group">
+                        <label>Stok Minimal</label>
+                        <input type="number" name="min_stok" class="form-control" required>
+                    </div>
+                    <div class="form-group">
                         <label>Harga</label>
                         <input type="number" name="harga" class="form-control" required>
                     </div>

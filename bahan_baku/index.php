@@ -105,9 +105,13 @@
                                     <td><?= $bahan_baku["id"] ?></td>
                                     <td><?= $bahan_baku["nama_bahan_baku"] ?></td>
                                     <td><?= number_format($bahan_baku["harga"]) ?></td>
-                                    <td><?= $bahan_baku["stok"] ?></td>
+                                    <td>
+                                        <?= $bahan_baku["stok"] ?><br>
+                                        <a href="#" class="badge badge-success hide-print">Min : <?= $bahan_baku['min_stok']?></a>
+                                    </td>
                                     <td><?= $bahan_baku["keterangan"] ?></td>
                                     <td>
+                                        <a href="pemakaian.php?id=<?=$bahan_baku['id']?>" class="badge badge-success hide-print">Pemakaian</a>
                                         <a href="edit.php?id=<?=$bahan_baku['id']?>" class="badge badge-warning hide-print">Edit</a>
                                         <a href="index.php?delete=<?=$bahan_baku['id']?>" class="badge badge-danger hide-print">Hapus</a>
                                     </td>

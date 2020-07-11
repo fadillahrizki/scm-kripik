@@ -38,6 +38,10 @@
                         <input type="number" name="stok" value="<?=$bahan_baku['stok']?>" class="form-control" required>
                     </div>
                     <div class="form-group">
+                        <label>Stok Minimal</label>
+                        <input type="number" name="min_stok" value="<?=$bahan_baku['min_stok']?>" class="form-control" required>
+                    </div>
+                    <div class="form-group">
                         <label>Harga</label>
                         <input type="number" name="harga" value="<?=$bahan_baku['harga']?>" class="form-control" required>
                     </div>

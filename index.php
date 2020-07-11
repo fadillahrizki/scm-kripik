@@ -8,6 +8,20 @@
         <div class="card">
             <div class="card-body">
                 <div class="row">
+                    <div class="col-sm-12">
+                        <?php
+                        $bahan = get("tb_bahan_baku");
+                        foreach($bahan as $bahan_baku):
+                            if($bahan_baku['stok'] > $bahan_baku['min_stok']) continue;
+                        ?>
+                        <div class="alert alert-warning" role="alert">
+                            Stok Bahan Baku <?= $bahan_baku['nama_bahan_baku'] ?> sudah mencapai batas minimal dan harus di pesan.
+                            Silahkan klik <a href="/pemesanan/create.php?bahan_baku=<?=$bahan_baku['nama_bahan_baku']?>">disini</a> untuk memesan bahan baku.
+                        </div>
+                        <?php endforeach ?>
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col-lg-6 mb-3">
                         <div class="card">
                             <div class="card-header">

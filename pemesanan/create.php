@@ -37,7 +37,7 @@
                         <select name="nama_bahan_baku" class="form-control" onchange="showPrice(event)">
                             <option value="">- Pilih Bahan Baku -</option>
                             <?php foreach($bahan as $bahan_baku): ?>
-                                <option value="<?=$bahan_baku['nama_bahan_baku']?>"><?=$bahan_baku['nama_bahan_baku']?></option>
+                                <option value="<?=$bahan_baku['nama_bahan_baku']?>" <?=isset($_GET['bahan_baku']) && $_GET['bahan_baku'] == $bahan_baku['nama_bahan_baku'] ? 'selected=""' : ''?>><?=$bahan_baku['nama_bahan_baku']?></option>
                             <?php endforeach ?>
                         </select>
                     </div>
