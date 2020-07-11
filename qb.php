@@ -75,6 +75,7 @@ function getPembelianFilter($filter){
 
 function single($tbl,$id){
     global $conn;
+    $id = is_numeric($id) ? $id : "'$id'";
     $query = "SELECT * FROM $tbl where id=$id";
     $res = $conn->query($query);
     return $res->fetch_assoc();
@@ -119,6 +120,7 @@ function update($tbl,$data,$id){
             $i++;
         }
     }
+    $id = is_numeric($id) ? $id : "'$id'";
     $query = "UPDATE $tbl SET $val WHERE id=$id";
     $res = $conn->query($query);
     return $res;

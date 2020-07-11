@@ -14,6 +14,28 @@ if($current != "login"){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SCM - Kripik</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/jquery.slick/1.5.0/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/jquery.slick/1.5.1/slick-theme.css"/>
+    <style type="text/css">
+        .slick-slide.slick-current.slick-active.slick-center {
+            transform: scale(1.2);
+        }
+        .slide-show img {
+            object-fit: cover;
+            object-position: center;
+            height: 250px;
+            width: 100%;
+            padding-left:20px;
+            padding-right:20px;
+        }
+        .slick-list.draggable {
+            padding-top: 30px!important;
+            padding-bottom: 30px!important;
+        }
+        .slick-prev:before, .slick-next:before {
+            color: #000;
+        }
+    </style>
 </head>
 <body>
 
@@ -22,6 +44,20 @@ if($current != "login"){
         <a href="/" class="navbar-brand m-auto">UD SELASIH SENTANG</a>
     </div>
 </nav>
+
+<div class="container">
+    <div class="row py-3">
+        <div class="col-sm-12">
+            <div class="slide-show">
+                <?php for($i=1;$i<=8;$i++) { ?>
+                <div style="height: 250px;overflow: hidden;">
+                    <img src="/assets/img-<?=$i?>.jpeg">
+                </div>
+                <?php } ?>
+            </div>
+        </div>
+    </div>
+</div>
 
 <?php if(isset($_SESSION["user"])):?>
 

@@ -25,7 +25,7 @@
                 <form method="post">
                     <div class="form-group">
                         <label>ID Bahan Baku</label>
-                        <input type="text" name="id" class="form-control" required>
+                        <input type="text" name="id" value="<?= substr(md5(strtotime(date('Y-m-d H:i:s'))), 0, 8) ?>" class="form-control" required readonly="">
                     </div>
                     <div class="form-group">
                         <label>Nama Bahan Baku</label>

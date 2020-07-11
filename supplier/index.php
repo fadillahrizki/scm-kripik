@@ -87,6 +87,7 @@
                             </tr>
                         </table>
                     </div>
+                    <div class="table-responsive">
                     <table class="table table-stripped">
                         <thead>
                             <tr>
@@ -124,6 +125,7 @@
                             <?php endif ?>
                         </tbody>
                     </table>
+                    </div>
                 </div>
             </div>
         </div>

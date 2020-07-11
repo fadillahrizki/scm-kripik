@@ -27,7 +27,7 @@
                 <form method="post">
                     <div class="form-group">
                         <label>ID Supplier</label>
-                        <input type="text" name="id" class="form-control" value="<?=$supplier['id']?>" required>
+                        <input type="text" name="id" class="form-control" value="<?=$supplier['id']?>" readonly>
                     </div>
                     <div class="form-group">
                         <label>Nama Supplier</label>
@@ -39,7 +39,7 @@
                     </div>
                     <div class="form-group">
                         <label>No Handphone</label>
-                        <input type="number" name="no_handphone" class="form-control" value="<?=$supplier['no_handphone']?>" required>
+                        <input type="tel" maxlength="12" name="no_handphone" class="form-control" value="<?=$supplier['no_handphone']?>" required>
                     </div>
                     <div class="form-group">
                         <label>Username</label>
@@ -51,7 +51,7 @@
                     </div>
                     <div class="form-group">
                         <label>Password</label>
-                        <input type="password" name="password" class="form-control" value="<?=$supplier['password']?>" required>
+                        <input type="password" name="password" pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\S+$).{8,}$" class="form-control" value="<?=$supplier['password']?>" required>
                     </div>
                     <button class="btn btn-success" name="edit">Edit</button>
                     <a href="index.php" class="btn btn-warning">Kembali</a>

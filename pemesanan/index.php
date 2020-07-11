@@ -93,32 +93,44 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>ID Admin</th>
+                            <!-- <th>ID Admin</th> -->
                             <th>Nama Bahan Baku</th>
                             <th>Tanggal</th>
                             <th>Jumlah</th>
                             <th>Harga</th>
                             <th>Keterangan</th>
+                            <th>Sub Total</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php if(count($pemesanan) > 0): ?>
-                            <?php foreach($pemesanan as $pem): ?>
+                        <?php if(count($pemesanan) > 0): $total=0;?>
+                            <?php foreach($pemesanan as $pem): $subtotal = $pem["jumlah"]*$pem["harga"]; $total+=$subtotal;?>
                             <tr>
                                 <td><?= $pem["id"] ?></td>
-                                <td><?= $pem["id_admin"] ?></td>
+                                <!-- <td><?= $pem["id_admin"] ?></td> -->
                                 <td><?= $pem["nama_bahan_baku"] ?></td>
                                 <td><?= $pem["tanggal"] ?></td>
                                 <td><?= $pem["jumlah"] ?></td>
                                 <td><?= number_format($pem["harga"]) ?></td>
                                 <td> <span class="badge badge-warning"> <?= $pem["keterangan"] ?></span></td>
+                                <td><?= number_format($subtotal) ?></td>
                                 <td>
                                     <a href="edit.php?id=<?=$pem['id']?>" class="badge badge-warning">Edit</a>
                                     <a href="index.php?delete=<?=$pem['id']?>" class="badge badge-danger">Hapus</a>
                                 </td>
                             </tr>
                             <?php endforeach ?>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td><b>Total</b></td>
+                                <td><?= number_format($total) ?></td>
+                                <td></td>
+                            </tr>
                         <?php else: ?>
                             <tr class="text-center">
                                 <td colspan="8">Tidak ada Data</td>
