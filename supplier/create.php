@@ -37,7 +37,7 @@
                     </div>
                     <div class="form-group">
                         <label>No Handphone</label>
-                        <input type="tel" name="no_handphone" maxlength="12" class="form-control" required>
+                        <input type="tel" name="no_handphone" pattern="^(?=.*[0-9]).{12,}$" maxlength="12" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label>Username</label>

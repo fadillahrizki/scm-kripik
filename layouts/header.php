@@ -50,7 +50,7 @@ if($current != "login"){
         <div class="col-sm-12">
             <div class="slide-show">
                 <?php for($i=1;$i<=8;$i++) { ?>
-                <div style="height: 250px;overflow: hidden;">
+                <div style="height: 150px;overflow: hidden;">
                     <img src="/assets/img-<?=$i?>.jpeg">
                 </div>
                 <?php } ?>

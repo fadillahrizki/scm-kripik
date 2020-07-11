@@ -39,7 +39,7 @@
                     </div>
                     <div class="form-group">
                         <label>No Handphone</label>
-                        <input type="tel" maxlength="12" name="no_handphone" class="form-control" value="<?=$supplier['no_handphone']?>" required>
+                        <input type="tel" maxlength="12" pattern="^(?=.*[0-9]).{12,}$" name="no_handphone" class="form-control" value="<?=$supplier['no_handphone']?>" required>
                     </div>
                     <div class="form-group">
                         <label>Username</label>
