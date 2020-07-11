@@ -54,6 +54,7 @@ function truncate($tbl){
 
 function getForSupplier($id){
     global $conn;
+    $id = is_numeric($id) ? $id : "'$id'";
     $query = "SELECT * FROM tb_pembelian WHERE id_supplier=$id AND keterangan='checkout'";
     $res = $conn->query($query);
     return $res->fetch_all(MYSQLI_ASSOC);
@@ -61,6 +62,7 @@ function getForSupplier($id){
 
 function getFaktur($id,$filter){
     global $conn;
+    $id = is_numeric($id) ? $id : "'$id'";
     $query = "SELECT * FROM tb_pembelian WHERE id_supplier=$id AND keterangan IN ('diterima','selesai') AND tanggal BETWEEN '$filter[from]' AND '$filter[to]'";
     $res = $conn->query($query);
     return $res->fetch_all(MYSQLI_ASSOC);
