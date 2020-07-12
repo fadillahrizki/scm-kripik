@@ -16,7 +16,7 @@ $('.slide-show').slick({
 	centerMode: true,
 	centerPadding: '60px',
 	slidesToScroll: 1,
-});
+}); 
 </script>
 </body>
 </html>
