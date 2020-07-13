@@ -25,13 +25,10 @@
                     <div class="alert alert-danger">Gagal mengedit data</div>
                 <?php endif ?>
                 <form method="post">
+                    <input type="hidden" name="id_admin" value="<?=$pemesanan['id_admin']?>" required>
                     <div class="form-group">
                         <label>ID Pemesanan</label>
                         <input type="text" name="id" class="form-control" disabled value="<?=$pemesanan['id']?>" required>
-                    </div>
-                    <div class="form-group">
-                        <label>ID Admin</label>
-                        <input type="text" name="id_admin" class="form-control" value="<?=$pemesanan['id_admin']?>" required>
                     </div>
                     <div class="form-group">
                         <label>Nama Bahan Baku</label>

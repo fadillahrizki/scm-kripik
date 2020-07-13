@@ -13,6 +13,7 @@
     }
 
     $bahan = get('tb_bahan_baku');
+    $harga = 0;
 ?>
 
 <div class="row">
@@ -36,7 +37,7 @@
                         </div>
                         <select name="nama_bahan_baku" class="form-control" onchange="showPrice(event)">
                             <option value="">- Pilih Bahan Baku -</option>
-                            <?php foreach($bahan as $bahan_baku): ?>
+                            <?php foreach($bahan as $bahan_baku): $harga = isset($_GET['bahan_baku']) && $_GET['bahan_baku'] == $bahan_baku['nama_bahan_baku'] ? $bahan_baku['harga'] : $harga; ?>
                                 <option value="<?=$bahan_baku['nama_bahan_baku']?>" <?=isset($_GET['bahan_baku']) && $_GET['bahan_baku'] == $bahan_baku['nama_bahan_baku'] ? 'selected=""' : ''?>><?=$bahan_baku['nama_bahan_baku']?></option>
                             <?php endforeach ?>
                         </select>
@@ -51,7 +52,7 @@
                     </div>
                     <div class="form-group">
                         <label>Harga</label>
-                        <input type="number" name="harga" id="price" readonly class="form-control" required>
+                        <input type="number" name="harga" value="<?=$harga?>" id="price" readonly class="form-control" required>
                     </div>
                     <!-- <div class="form-group"> -->
                         <!-- <label>Keterangan</label> -->
