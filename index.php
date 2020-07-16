@@ -10,15 +10,16 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <?php
+                        if($_SESSION['user']['level'] != 'supplier'){
                         $bahan = get("tb_bahan_baku");
                         foreach($bahan as $bahan_baku):
                             if($bahan_baku['stok'] > $bahan_baku['min_stok']) continue;
                         ?>
                         <div class="alert alert-warning" role="alert">
                             Stok Bahan Baku <?= $bahan_baku['nama_bahan_baku'] ?> sudah mencapai batas minimal dan harus di pesan.
-                            <!-- Silahkan klik <a href="/pemesanan/create.php?bahan_baku=<?=$bahan_baku['nama_bahan_baku']?>">disini</a> untuk memesan bahan baku. -->
+                            Silahkan klik <a href="/pemesanan/create.php?bahan_baku=<?=$bahan_baku['nama_bahan_baku']?>">disini</a> untuk memesan bahan baku.
                         </div>
-                        <?php endforeach ?>
+                        <?php endforeach; } ?>
                     </div>
                 </div>
                 <div class="row">
