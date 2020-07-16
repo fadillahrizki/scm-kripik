@@ -98,7 +98,7 @@
                                 <th>Username</th>
                                 <th>Email</th>
                                 <th>Password</th>
-                                <th>Aksi</th>
+                                <th class="hide-print">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -112,7 +112,7 @@
                                     <td><?= $supp["username"] ?></td>
                                     <td><?= $supp["email"] ?></td>
                                     <td><?= $supp["password"] ?></td>
-                                    <td>
+                                    <td class="hide-print">
                                         <a href="edit.php?id=<?=$supp['id']?>" class="badge badge-warning hide-print">Edit</a>
                                         <a href="index.php?delete=<?=$supp['id']?>" class="badge badge-danger hide-print">Hapus</a>
                                     </td>

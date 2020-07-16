@@ -24,6 +24,10 @@
         display: block;
     }
 
+    .hide-print{
+        display: none;
+    }
+
     #print {
         visibility: visible;
         position: fixed;

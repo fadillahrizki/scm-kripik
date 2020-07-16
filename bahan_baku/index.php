@@ -95,7 +95,7 @@
                                 <th>Harga</th>
                                 <th>Stok</th>
                                 <th>Keterangan</th>
-                                <th>Aksi</th>
+                                <th class="hide-print">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -110,7 +110,7 @@
                                         <a href="#" class="badge badge-success hide-print">Min : <?= $bahan_baku['min_stok']?></a>
                                     </td>
                                     <td><?= $bahan_baku["keterangan"] ?></td>
-                                    <td>
+                                    <td class="hide-print">
                                         <a href="pemakaian.php?id=<?=$bahan_baku['id']?>" class="badge badge-success hide-print">Pemakaian</a>
                                         <a href="edit.php?id=<?=$bahan_baku['id']?>" class="badge badge-warning hide-print">Edit</a>
                                         <a href="index.php?delete=<?=$bahan_baku['id']?>" class="badge badge-danger hide-print">Hapus</a>
