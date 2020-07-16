@@ -121,9 +121,9 @@
                         <label>&nbsp;</label>
                         <br>
                         <button class="btn btn-info" name="filter">Cari</button>
-                        <?php if(count($pembelian)):?>
+                        <?php // if(count($pembelian)):?>
                             <button class="btn btn-success" type="button" onclick="window.print()">Cetak</button>
-                        <?php endif ?>
+                        <?php // endif ?>
                     </div>
                 </form>
                 <?php endif ?>
