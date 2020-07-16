@@ -181,7 +181,7 @@
                                     <td><?= $pem["jumlah"] ?></td>
                                     <td>
                                     <?php if($pem['keterangan'] == 'checkout'): ?>
-                                        <span class="badge badge-warning"><?= $pem["keterangan"] ?></span>
+                                        <span class="badge badge-warning">Sedang di Proses</span>
                                     <?php elseif($pem['keterangan']=='diterima'): ?>
                                         <span class="badge badge-info"><?= $pem["keterangan"] ?></span>
                                     <?php elseif($pem['keterangan']=='diterima'): ?>
