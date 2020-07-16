@@ -16,7 +16,7 @@
                         ?>
                         <div class="alert alert-warning" role="alert">
                             Stok Bahan Baku <?= $bahan_baku['nama_bahan_baku'] ?> sudah mencapai batas minimal dan harus di pesan.
-                            Silahkan klik <a href="/pemesanan/create.php?bahan_baku=<?=$bahan_baku['nama_bahan_baku']?>">disini</a> untuk memesan bahan baku.
+                            <!-- Silahkan klik <a href="/pemesanan/create.php?bahan_baku=<?=$bahan_baku['nama_bahan_baku']?>">disini</a> untuk memesan bahan baku. -->
                         </div>
                         <?php endforeach ?>
                     </div>

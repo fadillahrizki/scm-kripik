@@ -62,7 +62,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-        <button class="btn btn-primary" name="checkout">Checkout</button>
+        <button class="btn btn-primary" name="checkout">Order</button>
       </div>
     </div>
   </div>

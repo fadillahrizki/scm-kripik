@@ -69,6 +69,10 @@
         visibility: hidden;
     }
 
+    .no-print {
+        display: none;
+    }
+
     .text-print{
         display: block;
     }
@@ -105,6 +109,15 @@
                         <input type="date" value="<?=@$_GET['to']?>" name="to" class="form-control">
                     </div>
                     <div class="form-group">
+                        <label>Status</label>
+                        <select class="form-control" name="status">
+                            <option value="">- Status -</option>
+                            <option value="ditolak" <?= isset($_GET['status']) && $_GET['status'] == 'ditolak' ? 'selected=""' : ''?>>Di Tolak</option>
+                            <option value="diterima" <?= isset($_GET['status']) && $_GET['status'] == 'diterima' ? 'selected=""' : ''?>>Di Terima</option>
+                            <option value="selesai" <?= isset($_GET['status']) && $_GET['status'] == 'selesai' ? 'selected=""' : ''?>>Selesai</option>
+                        </select>
+                    </div>
+                    <div class="form-group mx-3">
                         <label>&nbsp;</label>
                         <br>
                         <button class="btn btn-info" name="filter">Cari</button>
@@ -132,12 +145,17 @@
                                 <td colspan="2">
                                     <hr>
                                     <h3>Laporan Pembelian</h3>
+                                    <div style="text-align: left">
+                                    <b>Tanggal Awal :</b> <?= isset($_GET['from']) && $_GET['from'] != "" ? $_GET['from'] : '-' ?><br>
+                                    <b>Tanggal Akhir :</b> <?= isset($_GET['to']) && $_GET['to'] != "" ? $_GET['to'] : '-' ?><br>
+                                    <b>Status :</b> <?= isset($_GET['status']) && $_GET['status'] != "" ? $_GET['status'] : '-' ?><br>
+                                    </div>
                                 </td>
                             </tr>
                         </table>
                         
                     </div>
-                    <table class="table table-stripped">
+                    <table class="table table-stripped" width="100%">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -145,7 +163,7 @@
                                 <th>Jumlah</th>
                                 <th>Keterangan</th>
                                 <th>Total</th>
-                                <th>Aksi</th>
+                                <th class="no-print">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -176,16 +194,16 @@
                                     </td>
                                     <td><?= number_format($pem["total"]) ?></td>
                                     <?php if($_SESSION['user']['level'] == 'supplier'): ?>
-                                        <td>
+                                        <td class="no-print">
                                             <a href="index.php?available=<?=$pem['id']?>" class="badge badge-success">Bahan baku tersedia</a>
                                             <a href="index.php?unavailable=<?=$pem['id']?>" class="badge badge-danger">Bahan baku tidak tersedia</a>
                                         </td>
                                     <?php elseif($pem['keterangan'] == 'diterima'): ?>
-                                        <td>
+                                        <td class="no-print">
                                             <a href="index.php?confirm=<?=$pem['id']?>" class="badge badge-success">Konfirmasi</a>
                                         </td>
                                     <?php else: ?>
-                                        <td>Tidak ada aksi</td>
+                                        <td class="no-print">Tidak ada aksi</td>
                                     <?php endif ?>
                                 </tr>
                                 <?php endforeach ?>

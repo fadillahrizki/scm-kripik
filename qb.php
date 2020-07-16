@@ -70,7 +70,15 @@ function getFaktur($id,$filter){
 
 function getPembelianFilter($filter){
     global $conn;
-    $query = "SELECT * FROM tb_pembelian WHERE keterangan IN ('ditolak','diterima','selesai') AND tanggal BETWEEN '$filter[from]' AND '$filter[to]'";
+    $status = isset($filter['status']) && $filter['status'] != "" ? "'".$filter['status']."'" : "'ditolak','diterima','selesai'";
+    if($filter['from'] != "" && $filter['to'] !== "")
+    {
+        $query = "SELECT * FROM tb_pembelian WHERE keterangan IN ($status) AND tanggal BETWEEN '$filter[from]' AND '$filter[to]'";
+    }
+    else
+    {
+        $query = "SELECT * FROM tb_pembelian WHERE keterangan IN ($status)";
+    }
     $res = $conn->query($query);
     return $res->fetch_all(MYSQLI_ASSOC);
 }
