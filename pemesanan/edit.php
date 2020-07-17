@@ -32,23 +32,23 @@
                     </div>
                     <div class="form-group">
                         <label>Nama Bahan Baku</label>
-                        <input type="text" name="nama_bahan_baku" class="form-control" value="<?=$pemesanan['nama_bahan_baku']?>" required>
+                        <input type="text" name="nama_bahan_baku" oninvalid="this.setCustomValidity('Field ini harus di isi')" class="form-control" value="<?=$pemesanan['nama_bahan_baku']?>" required>
                     </div>
                     <div class="form-group">
                         <label>Tanggal</label>
-                        <input type="date" name="tanggal" class="form-control" value="<?=$pemesanan['tanggal']?>" required>
+                        <input type="date" name="tanggal" oninvalid="this.setCustomValidity('Field ini harus di isi')" class="form-control" value="<?=$pemesanan['tanggal']?>" required>
                     </div>
                     <div class="form-group">
                         <label>Jumlah</label>
-                        <input type="number" name="jumlah" class="form-control" value="<?=$pemesanan['jumlah']?>" required>
+                        <input type="number" name="jumlah" oninvalid="this.setCustomValidity('Field ini harus di isi')" class="form-control" value="<?=$pemesanan['jumlah']?>" required>
                     </div>
                     <div class="form-group">
                         <label>Harga</label>
-                        <input type="number" name="harga" class="form-control" value="<?=$pemesanan['harga']?>" required>
+                        <input type="number" name="harga" oninvalid="this.setCustomValidity('Field ini harus di isi')" class="form-control" value="<?=$pemesanan['harga']?>" required>
                     </div>
                     <!-- <div class="form-group"> -->
                         <!-- <label>Keterangan</label> -->
-                        <input type="hidden" name="keterangan" class="form-control" value="<?=$pemesanan['keterangan']?>" required>
+                        <input type="hidden" name="keterangan" oninvalid="this.setCustomValidity('Field ini harus di isi')" class="form-control" value="<?=$pemesanan['keterangan']?>" required>
                     <!-- </div> -->
                     <button class="btn btn-success" name="edit">Edit</button>
                     <a href="index.php" class="btn btn-warning">Kembali</a>

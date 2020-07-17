@@ -31,23 +31,23 @@
                     </div>
                     <div class="form-group">
                         <label>Nama Bahan Baku</label>
-                        <input type="text" name="nama_bahan_baku" value="<?=$bahan_baku['nama_bahan_baku']?>" class="form-control" required>
+                        <input type="text" name="nama_bahan_baku" value="<?=$bahan_baku['nama_bahan_baku']?>" oninvalid="this.setCustomValidity('Field ini harus di isi')" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label>Stok</label>
-                        <input type="number" name="stok" value="<?=$bahan_baku['stok']?>" class="form-control" required>
+                        <input type="number" name="stok" value="<?=$bahan_baku['stok']?>" oninvalid="this.setCustomValidity('Field ini harus di isi')" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label>Stok Minimal</label>
-                        <input type="number" name="min_stok" value="<?=$bahan_baku['min_stok']?>" class="form-control" required>
+                        <input type="number" name="min_stok" value="<?=$bahan_baku['min_stok']?>" oninvalid="this.setCustomValidity('Field ini harus di isi')" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label>Harga</label>
-                        <input type="number" name="harga" value="<?=$bahan_baku['harga']?>" class="form-control" required>
+                        <input type="number" name="harga" value="<?=$bahan_baku['harga']?>" oninvalid="this.setCustomValidity('Field ini harus di isi')" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label>Keterangan</label>
-                        <input type="text" name="keterangan" value="<?=$bahan_baku['keterangan']?>" class="form-control" required>
+                        <input type="text" name="keterangan" value="<?=$bahan_baku['keterangan']?>" oninvalid="this.setCustomValidity('Field ini harus di isi')" class="form-control" required>
                     </div>
                     <button class="btn btn-success" name="edit">Edit</button>
                     <a href="index.php" class="btn btn-warning">Kembali</a>

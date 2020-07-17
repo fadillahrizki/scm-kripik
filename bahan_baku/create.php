@@ -29,23 +29,23 @@
                     </div>
                     <div class="form-group">
                         <label>Nama Bahan Baku</label>
-                        <input type="text" name="nama_bahan_baku" class="form-control" required>
+                        <input type="text" name="nama_bahan_baku"  oninvalid="this.setCustomValidity('Field ini harus di isi')" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label>Stok</label>
-                        <input type="number" name="stok" class="form-control" required>
+                        <input type="number" name="stok"  oninvalid="this.setCustomValidity('Field ini harus di isi')" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label>Stok Minimal</label>
-                        <input type="number" name="min_stok" class="form-control" required>
+                        <input type="number" name="min_stok"  oninvalid="this.setCustomValidity('Field ini harus di isi')" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label>Harga</label>
-                        <input type="number" name="harga" class="form-control" required>
+                        <input type="number" name="harga"  oninvalid="this.setCustomValidity('Field ini harus di isi')" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label>Keterangan</label>
-                        <input type="text" name="keterangan" class="form-control">
+                        <input type="text" name="keterangan"  oninvalid="this.setCustomValidity('Field ini harus di isi')" class="form-control">
                     </div>
                     <button class="btn btn-success" name="create">Tambah</button>
                     <a href="index.php" class="btn btn-warning">Kembali</a>
