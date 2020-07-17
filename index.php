@@ -16,7 +16,7 @@
                         $items = [
                             "",
                             "Ubi Kayu",
-                            "Suhun",
+                            "Sukun",
                             "Pisang",
                             "Ubi Rambat"
                         ];
