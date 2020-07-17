@@ -35,7 +35,7 @@
                         <div id="bahan-baku" style="display:none;">
                             <?= json_encode($bahan) ?>
                         </div>
-                        <select name="nama_bahan_baku" oninvalid="this.setCustomValidity('Field ini harus di isi')" class="form-control" onchange="showPrice(event)">
+                        <select name="nama_bahan_baku" oninvalid="setCustomValidity('Field ini harus di isi')" oninput="setCustomValidity('')" class="form-control" onchange="showPrice(event)">
                             <option value="">- Pilih Bahan Baku -</option>
                             <?php foreach($bahan as $bahan_baku): $harga = isset($_GET['bahan_baku']) && $_GET['bahan_baku'] == $bahan_baku['nama_bahan_baku'] ? $bahan_baku['harga'] : $harga; ?>
                                 <option value="<?=$bahan_baku['nama_bahan_baku']?>" <?=isset($_GET['bahan_baku']) && $_GET['bahan_baku'] == $bahan_baku['nama_bahan_baku'] ? 'selected=""' : ''?>><?=$bahan_baku['nama_bahan_baku']?></option>
@@ -44,19 +44,19 @@
                     </div>
                     <div class="form-group">
                         <label>Tanggal</label>
-                        <input type="date" name="tanggal" oninvalid="this.setCustomValidity('Field ini harus di isi')" class="form-control" required>
+                        <input type="date" name="tanggal" oninvalid="setCustomValidity('Field ini harus di isi')" oninput="setCustomValidity('')" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label>Jumlah</label>
-                        <input type="number" name="jumlah" oninvalid="this.setCustomValidity('Field ini harus di isi')" class="form-control" required>
+                        <input type="number" name="jumlah" oninvalid="setCustomValidity('Field ini harus di isi')" oninput="setCustomValidity('')" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label>Harga</label>
-                        <input type="number" name="harga" value="<?=$harga?>" id="price" readonly oninvalid="this.setCustomValidity('Field ini harus di isi')" class="form-control" required>
+                        <input type="number" name="harga" value="<?=$harga?>" id="price" readonly oninvalid="setCustomValidity('Field ini harus di isi')" oninput="setCustomValidity('')" class="form-control" required>
                     </div>
                     <!-- <div class="form-group"> -->
                         <!-- <label>Keterangan</label> -->
-                        <input type="hidden" name="keterangan" value="pesan" oninvalid="this.setCustomValidity('Field ini harus di isi')" class="form-control" required>
+                        <input type="hidden" name="keterangan" value="pesan" oninvalid="setCustomValidity('Field ini harus di isi')" oninput="setCustomValidity('')" class="form-control" required>
                     <!-- </div> -->
                     <button class="btn btn-success" name="create">Tambah</button>
                     <a href="index.php" class="btn btn-warning">Kembali</a>

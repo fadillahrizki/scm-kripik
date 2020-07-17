@@ -31,27 +31,27 @@
                     </div>
                     <div class="form-group">
                         <label>Nama Supplier</label>
-                        <input type="text" name="nama_supplier" oninvalid="this.setCustomValidity('Field ini harus di isi')" class="form-control" value="<?=$supplier['nama_supplier']?>" required>
+                        <input type="text" name="nama_supplier" oninvalid="setCustomValidity('Field ini harus di isi')" oninput="setCustomValidity('')" class="form-control" value="<?=$supplier['nama_supplier']?>" required>
                     </div>
                     <div class="form-group">
                         <label>Alamat</label>
-                        <textarea name="alamat" rows="3" oninvalid="this.setCustomValidity('Field ini harus di isi')" class="form-control"><?=$supplier['alamat']?></textarea>
+                        <textarea name="alamat" rows="3" oninvalid="setCustomValidity('Field ini harus di isi')" oninput="setCustomValidity('')" class="form-control"><?=$supplier['alamat']?></textarea>
                     </div>
                     <div class="form-group">
                         <label>No Handphone</label>
-                        <input type="tel" maxlength="12" pattern="^(?=.*[0-9]).{12,}$" name="no_handphone" oninvalid="this.setCustomValidity('Field ini harus di isi')" class="form-control" value="<?=$supplier['no_handphone']?>" required>
+                        <input type="tel" maxlength="12" pattern="^(?=.*[0-9]).{12,}$" name="no_handphone" oninvalid="setCustomValidity('Field ini harus di isi')" oninput="setCustomValidity('')" class="form-control" value="<?=$supplier['no_handphone']?>" required>
                     </div>
                     <div class="form-group">
                         <label>Username</label>
-                        <input type="text" name="username" oninvalid="this.setCustomValidity('Field ini harus di isi')" class="form-control" value="<?=$supplier['username']?>" required>
+                        <input type="text" name="username" oninvalid="setCustomValidity('Field ini harus di isi')" oninput="setCustomValidity('')" class="form-control" value="<?=$supplier['username']?>" required>
                     </div>
                     <div class="form-group">
                         <label>Email</label>
-                        <input type="email" name="email" oninvalid="this.setCustomValidity('Field ini harus di isi')" class="form-control" value="<?=$supplier['email']?>" required>
+                        <input type="email" name="email" oninvalid="setCustomValidity('Field ini harus di isi')" oninput="setCustomValidity('')" class="form-control" value="<?=$supplier['email']?>" required>
                     </div>
                     <div class="form-group">
                         <label>Password</label>
-                        <input type="password" name="password" pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\S+$).{8,}$" oninvalid="this.setCustomValidity('Field ini harus di isi')" class="form-control" value="<?=$supplier['password']?>" required>
+                        <input type="password" name="password" pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\S+$).{8,}$" oninvalid="setCustomValidity('Field ini harus di isi')" oninput="setCustomValidity('')" class="form-control" value="<?=$supplier['password']?>" required>
                     </div>
                     <button class="btn btn-success" name="edit">Edit</button>
                     <a href="index.php" class="btn btn-warning">Kembali</a>
