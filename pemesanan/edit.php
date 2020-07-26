@@ -15,6 +15,29 @@
     }
 ?>
 
+<!-- Content Header (Page header) -->
+<div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark">Edit Pemesanan</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="/">Home</a></li>
+              <li class="breadcrumb-item"><a href="/pemesanan/index.php">Pemesanan</a></li>              
+              <li class="breadcrumb-item active">Edit Pemesanan</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+
 <div class="row">
     <div class="col-12">
         <div class="card">
@@ -26,12 +49,9 @@
                 <?php endif ?>
                 <form method="post">
                     <input type="hidden" name="id_admin" value="<?=$pemesanan['id_admin']?>" required>
+                    <input type="hidden" name="id" class="form-control" disabled value="<?=$pemesanan['id']?>" required>
                     <div class="form-group">
-                        <label>ID Pemesanan</label>
-                        <input type="text" name="id" class="form-control" disabled value="<?=$pemesanan['id']?>" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Nama Bahan Baku</label>
+                        <label>Nama Pemesanan</label>
                         <input type="text" name="nama_bahan_baku" oninvalid="setCustomValidity('Field ini harus di isi')" oninput="setCustomValidity('')" class="form-control" value="<?=$pemesanan['nama_bahan_baku']?>" required>
                     </div>
                     <div class="form-group">

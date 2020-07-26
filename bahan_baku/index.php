@@ -49,6 +49,29 @@
 
 </style>
 
+
+     <!-- Content Header (Page header) -->
+     <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark">Bahan Baku</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="/">Home</a></li>
+              <li class="breadcrumb-item active">Bahan Baku</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+
 <div class="row">
     <div class="col-12">
         <div class="card">
@@ -87,10 +110,11 @@
                             </tr>
                         </table>
                     </div>
-                    <table class="table table-stripped">
+                    <table class="table table-bordered table-stripped">
                         <thead>
                             <tr>
                                 <th>ID</th>
+                                <th>Supplier</th>
                                 <th>Nama</th>
                                 <th>Harga</th>
                                 <th>Stok</th>
@@ -103,6 +127,7 @@
                                 <?php foreach($bahan as $bahan_baku): ?>
                                 <tr>
                                     <td><?= $bahan_baku["id"] ?></td>
+                                    <td><?= single("tb_supplier",$bahan_baku["supplier_id"])["nama_supplier"] ?></td>
                                     <td><?= $bahan_baku["nama_bahan_baku"] ?></td>
                                     <td><?= number_format($bahan_baku["harga"]) ?></td>
                                     <td>
@@ -119,7 +144,7 @@
                                 <?php endforeach ?>
                             <?php else: ?>
                                 <tr class="text-center">
-                                    <td colspan="6">Tidak ada Data</td>
+                                    <td colspan="7">Tidak ada Data</td>
                                 </tr>
                             <?php endif ?>
                         </tbody>

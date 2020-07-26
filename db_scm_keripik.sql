@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 30, 2020 at 10:59 PM
+-- Generation Time: Jul 26, 2020 at 10:16 PM
 -- Server version: 5.7.30-0ubuntu0.18.04.1
--- PHP Version: 7.4.7
+-- PHP Version: 7.4.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -29,10 +29,12 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `tb_bahan_baku` (
-  `id` int(11) NOT NULL,
+  `id` int(8) NOT NULL,
+  `supplier_id` int(11) NOT NULL,
   `nama_bahan_baku` varchar(30) NOT NULL,
   `harga` int(11) NOT NULL,
   `stok` int(11) NOT NULL,
+  `min_stok` int(11) NOT NULL,
   `keterangan` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -40,9 +42,21 @@ CREATE TABLE `tb_bahan_baku` (
 -- Dumping data for table `tb_bahan_baku`
 --
 
-INSERT INTO `tb_bahan_baku` (`id`, `nama_bahan_baku`, `harga`, `stok`, `keterangan`) VALUES
-(2000, 'Singkong', 10000, 102, ''),
-(2020, 'Pisang', 5000, 50, '');
+INSERT INTO `tb_bahan_baku` (`id`, `supplier_id`, `nama_bahan_baku`, `harga`, `stok`, `min_stok`, `keterangan`) VALUES
+(1, 1, 'Bahan 1', 10000, 100, 5, 'Banyak');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_pemakaian`
+--
+
+CREATE TABLE `tb_pemakaian` (
+  `id` int(11) NOT NULL,
+  `nama_bahan_baku` varchar(255) NOT NULL,
+  `jumlah` int(11) NOT NULL,
+  `keterangan` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -60,14 +74,6 @@ CREATE TABLE `tb_pembelian` (
   `keterangan` varchar(255) NOT NULL,
   `total` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `tb_pembelian`
---
-
-INSERT INTO `tb_pembelian` (`id`, `id_supplier`, `nama_bahan_baku`, `tanggal`, `jumlah`, `harga`, `keterangan`, `total`) VALUES
-(2000, 200, 'Singkong', '2020-06-30', 2, 10000, 'selesai', 20000),
-(20002, 200, 'Singkong', '2020-06-29', 2, 10000, 'selesai', 20000);
 
 -- --------------------------------------------------------
 
@@ -106,8 +112,8 @@ CREATE TABLE `tb_supplier` (
 --
 
 INSERT INTO `tb_supplier` (`id`, `nama_supplier`, `alamat`, `no_handphone`, `username`, `email`, `password`) VALUES
-(200, 'Pujiono', 'Kreakseng', '0822', 'pujiono', 'pujiono@mail.com', 'pujiono'),
-(3000, 'Pajiono', 'Pajiek', '0899', 'pajiono', 'pajiono@mail.com', 'pajiono');
+(1, 'Supplier 1', 's1', '082222222222', 'supplier1', 'supplier1@mail.com', 'Supplier1'),
+(2, 'Supplier 2', 'supplier 2', '082222222222', 'supplier2', 'supplier2@mail.com', 'Supplier2');
 
 -- --------------------------------------------------------
 
@@ -139,6 +145,12 @@ ALTER TABLE `tb_bahan_baku`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `tb_pemakaian`
+--
+ALTER TABLE `tb_pemakaian`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `tb_pembelian`
 --
 ALTER TABLE `tb_pembelian`
@@ -165,6 +177,36 @@ ALTER TABLE `tb_user`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `tb_bahan_baku`
+--
+ALTER TABLE `tb_bahan_baku`
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `tb_pemakaian`
+--
+ALTER TABLE `tb_pemakaian`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `tb_pembelian`
+--
+ALTER TABLE `tb_pembelian`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `tb_pemesanan`
+--
+ALTER TABLE `tb_pemesanan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `tb_supplier`
+--
+ALTER TABLE `tb_supplier`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tb_user`

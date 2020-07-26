@@ -3,6 +3,7 @@
     require_once '../layouts/header.php';
 
     $bahan_baku = single("tb_bahan_baku",$_GET['id']);
+    $suppliers = get("tb_supplier");
 
     if(isset($_POST["edit"])){
         unset($_POST["edit"]);
@@ -15,6 +16,29 @@
     }
 ?>
 
+<!-- Content Header (Page header) -->
+     <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark">Edit Bahan Baku</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="/">Home</a></li>
+              <li class="breadcrumb-item"><a href="/bahan_baku/index.php">Bahan Baku</a></li>              
+              <li class="breadcrumb-item active">Edit Bahan Baku</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+
 <div class="row">
     <div class="col-12">
         <div class="card">
@@ -25,9 +49,18 @@
                     <div class="alert alert-danger">Gagal mengedit data</div>
                 <?php endif ?>
                 <form method="post">
+                    <input type="hidden" name="id" disabled value="<?=$bahan_baku['id']?>" class="form-control" required>
                     <div class="form-group">
-                        <label>ID Bahan Baku</label>
-                        <input type="text" name="id" disabled value="<?=$bahan_baku['id']?>" class="form-control" required>
+                        <label>Supplier</label>
+                        <select name="supplier_id" class="form-control">
+                            <?php foreach($suppliers as $supplier): ?>
+                                <?php if($bahan_baku['supplier_id'] == $supplier['id']) : ?>
+                                    <option value="<?=$supplier['id']?>" selected><?=$supplier['nama_supplier']?></option>
+                                <?php else: ?>
+                                    <option value="<?=$supplier['id']?>"><?=$supplier['nama_supplier']?></option>
+                                <?php endif ?>
+                            <?php endforeach ?>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label>Nama Bahan Baku</label>

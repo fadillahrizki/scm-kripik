@@ -12,6 +12,28 @@
         }
     }
 ?>
+<!-- Content Header (Page header) -->
+<div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark">Tambah Supplier</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="/">Home</a></li>
+              <li class="breadcrumb-item"><a href="/supplier/index.php">Supplier</a></li>              
+              <li class="breadcrumb-item active">Tambah Supplier</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
 
 <div class="row">
     <div class="col-12">
@@ -23,10 +45,6 @@
                     <div class="alert alert-danger">Gagal menambah data</div>
                 <?php endif ?>
                 <form method="post">
-                    <div class="form-group">
-                        <label>ID Supplier</label>
-                        <input type="text" name="id" value="<?= substr(md5(strtotime(date('Y-m-d H:i:s'))), 0, 8) ?>" class="form-control" readonly="">
-                    </div>
                     <div class="form-group">
                         <label>Nama Supplier</label>
                         <input type="text" name="nama_supplier" oninvalid="setCustomValidity('Field ini harus di isi')" oninput="setCustomValidity('')" class="form-control" required>

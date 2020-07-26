@@ -2,6 +2,8 @@
     $current = "data bahan baku";
     require_once '../layouts/header.php';
 
+    $suppliers = get("tb_supplier");
+
     if(isset($_POST["create"])){
         unset($_POST["create"]);
         $res = insert("tb_bahan_baku",$_POST);
@@ -12,6 +14,29 @@
         }
     }
 ?>
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark">Tambah Bahan Baku</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="/">Home</a></li>
+              <li class="breadcrumb-item"><a href="/bahan_baku/index.php">Bahan Baku</a></li>              
+              <li class="breadcrumb-item active">Tambah Bahan Baku</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
 
 <div class="row">
     <div class="col-12">
@@ -24,8 +49,13 @@
                 <?php endif ?>
                 <form method="post">
                     <div class="form-group">
-                        <label>ID Bahan Baku</label>
-                        <input type="text" name="id" value="<?= substr(md5(strtotime(date('Y-m-d H:i:s'))), 0, 8) ?>" class="form-control" required readonly="">
+                        <label>Supplier</label>
+                        <select name="supplier_id" class="form-control">
+                            <option value="-" disabled selected> - Pilih Supplier - </option>
+                            <?php foreach($suppliers as $supplier): ?>
+                                <option value="<?=$supplier['id']?>"><?=$supplier['nama_supplier']?></option>
+                            <?php endforeach ?>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label>Nama Bahan Baku</label>
