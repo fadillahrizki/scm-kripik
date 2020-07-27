@@ -44,6 +44,7 @@
                 </div>
             </div>
 
+<?php if($_SESSION['user']['level'] == 'admin'): ?>
 <!-- Small boxes (Stat box) -->
 <div class="row">
     <div class="col-lg-3 col-6">
@@ -96,6 +97,7 @@
     <!-- ./col -->
 </div>
 <!-- /.row -->
+<?php endif ?>
 
 <div class="row">
     <div class="col-12">
