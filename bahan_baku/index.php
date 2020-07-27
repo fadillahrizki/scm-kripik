@@ -137,7 +137,7 @@
                                     <td>Rp. <?= number_format($bahan_baku["harga"]) ?></td>
                                     <td>
                                         <?= $bahan_baku["stok"] ?> Kg<br>
-                                        <a href="#" class="badge badge-success hide-print">Min : <?= $bahan_baku['min_stok']?></a>
+                                        <a href="#" class="badge badge-success hide-print">Min : <?= $bahan_baku['min_stok']?> Kg</a>
                                     </td>
                                     <td><?= $bahan_baku["keterangan"] ?></td>
                                     <td class="hide-print">
