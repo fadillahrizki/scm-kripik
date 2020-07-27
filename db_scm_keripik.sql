@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.5deb2
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Jul 26, 2020 at 10:16 PM
--- Server version: 5.7.30-0ubuntu0.18.04.1
--- PHP Version: 7.4.8
+-- Host: 127.0.0.1
+-- Generation Time: Jul 27, 2020 at 03:32 AM
+-- Server version: 10.1.35-MariaDB
+-- PHP Version: 7.2.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -75,6 +75,13 @@ CREATE TABLE `tb_pembelian` (
   `total` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `tb_pembelian`
+--
+
+INSERT INTO `tb_pembelian` (`id`, `id_supplier`, `nama_bahan_baku`, `tanggal`, `jumlah`, `harga`, `keterangan`, `total`) VALUES
+(4, 1, 'Bahan 1', '2020-07-27', 2, 10000, 'checkout', 20000);
+
 -- --------------------------------------------------------
 
 --
@@ -83,7 +90,7 @@ CREATE TABLE `tb_pembelian` (
 
 CREATE TABLE `tb_pemesanan` (
   `id` int(11) NOT NULL,
-  `id_admin` int(11) NOT NULL,
+  `id_supplier` int(11) NOT NULL,
   `nama_bahan_baku` varchar(255) NOT NULL,
   `tanggal` date NOT NULL,
   `jumlah` int(11) NOT NULL,
@@ -194,7 +201,7 @@ ALTER TABLE `tb_pemakaian`
 -- AUTO_INCREMENT for table `tb_pembelian`
 --
 ALTER TABLE `tb_pembelian`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tb_pemesanan`

@@ -34,6 +34,7 @@ if($current != "login"){
   <link rel="stylesheet" href="<?= $current == "dashboard" || $current == "login" ? "plugins/summernote/summernote-bs4.css" : '../plugins/summernote/summernote-bs4.css'; ?> ">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css">
   <!-- DataTables -->
   <link rel="stylesheet" href="<?= $current == "dashboard" || $current == "login" ? "plugins/datatables-bs4/css/dataTables.bootstrap4.min.css" : "../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css" ?>">
   <link rel="stylesheet" href="<?= $current == "dashboard" || $current == "login" ? "plugins/datatables-responsive/css/responsive.bootstrap4.min.css" : "../plugins/datatables-responsive/css/responsive.bootstrap4.min.css" ?>">
@@ -159,7 +160,7 @@ if($current != "login"){
             </li>
 
             <li class="nav-item">
-                <a href="/pembelian/faktur.php" class="nav-link <?= $current == "data pembelian" ? "active" : "" ?>">
+                <a href="/pembelian/faktur.php" class="nav-link <?= $current == "faktur pembelian" ? "active" : "" ?>">
                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi nav-icon bi-journal-check" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path d="M4 1h5v1H4a1 1 0 0 0-1 1H2a2 2 0 0 1 2-2zm10 7v5a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2h1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V8h1zM2 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H2zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H2zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H2z"/>
                 <path fill-rule="evenodd" d="M15.854 2.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 4.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>

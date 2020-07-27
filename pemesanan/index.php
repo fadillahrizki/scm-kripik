@@ -17,13 +17,11 @@
     $pemesanan = get("tb_pemesanan");
     $supplier = get("tb_supplier");
 
-    if(isset($_POST['checkout'])){
+    if(isset($_GET['checkout'])){
         unset($_POST['checkout']);
         foreach($pemesanan as $pem){
-            $pem['id_supplier'] = $_POST['id_supplier'];
             $pem['keterangan'] = 'checkout';
             $pem['total'] = $pem['harga']*$pem['jumlah'];
-            unset($pem['id_admin']);
             $ins = insert('tb_pembelian',$pem);
             if($ins){
                 $trun = truncate('tb_pemesanan');
@@ -60,36 +58,36 @@
     <section class="content">
         <div class="container-fluid">
 
-<form method="post">
-<div class="modal fade" id="modal" tabindex="-1" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="modalTitle">Order</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        
-            <div class="form-group">
-                <label>Supplier</label>
-                <select name="id_supplier" class="form-control">
-                    <option value="">- Pilih Supplier -</option>
-                    <?php foreach($supplier as $supp): ?>
-                        <option value="<?=$supp['id']?>"><?=$supp['nama_supplier']?></option>
-                    <?php endforeach ?>
-                </select>
+            <form method="post">
+            <div class="modal fade" id="modal" tabindex="-1" role="dialog">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitle">Order</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    
+                        <div class="form-group">
+                            <label>Supplier</label>
+                            <select name="id_supplier" class="form-control">
+                                <option value="">- Pilih Supplier -</option>
+                                <?php foreach($supplier as $supp): ?>
+                                    <option value="<?=$supp['id']?>"><?=$supp['nama_supplier']?></option>
+                                <?php endforeach ?>
+                            </select>
+                        </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                    <button class="btn btn-primary" name="checkout">Order</button>
+                  </div>
+                </div>
+              </div>
             </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-        <button class="btn btn-primary" name="checkout">Order</button>
-      </div>
-    </div>
-  </div>
-</div>
-</form>
+            </form>
 
 <div class="row">
     <div class="col-12">
@@ -99,11 +97,11 @@
                     <h5>Data Pemesanan</h5>
                     <div>
                         <?php if(count($pemesanan)) : ?>
-                            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal">
+                            <a href="?checkout=true" class="btn btn-primary btn-sm">
                               Order
-                            </button>
+                            </a>
                         <?php endif ?>
-                        <a href="create.php" class="btn btn-success btn-sm">Tambah</a>
+                        <a href="create.php" class="btn btn-success btn-sm"><i class="fa fa-plus"></i> Tambah</a>
                     </div>
                 </div>
                 <?php if(isset($success)): ?>
@@ -138,8 +136,8 @@
                                 <td> <span class="badge badge-warning"> <?= $pem["keterangan"] ?></span></td>
                                 <td><?= number_format($subtotal) ?></td>
                                 <td>
-                                    <a href="edit.php?id=<?=$pem['id']?>" class="badge badge-warning">Edit</a>
-                                    <a href="index.php?delete=<?=$pem['id']?>" class="badge badge-danger">Hapus</a>
+                                    <a href="edit.php?id=<?=$pem['id']?>" class="badge badge-warning"><i class="fa fa-pencil"></i> Edit</a>
+                                    <a href="index.php?delete=<?=$pem['id']?>" class="badge badge-danger"><i class="fa fa-trash"></i> Hapus</a>
                                 </td>
                             </tr>
                             <?php endforeach ?>
@@ -150,6 +148,7 @@
                         <?php endif ?>
                     </tbody>
                     <tfoot>
+                        <?php if(count($pemesanan) > 0):?>
                         <tr>
                             <td></td>
                             <td></td>
@@ -160,6 +159,7 @@
                             <td><?= number_format($total) ?></td>
                             <td></td>
                         </tr>
+                        <?php endif ?>
                     </tfoot>
                 </table>
             </div>

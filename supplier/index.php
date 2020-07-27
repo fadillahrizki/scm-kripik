@@ -78,8 +78,8 @@
                 <div class="d-flex justify-content-between py-3">
                     <h5>Data Supplier</h5>
                     <div>
-                        <button class="btn btn-primary btn-sm" type="button" onclick="window.print()">Cetak</button>
-                        <a href="create.php" class="btn btn-success btn-sm">Tambah</a>
+                        <button class="btn btn-primary btn-sm" type="button" onclick="window.print()"><i class="fa fa-print"></i> Cetak</button>
+                        <a href="create.php" class="btn btn-success btn-sm"><i class="fa fa-plus"></i> Tambah</a>
                     </div>
                 </div>
                 <?php if(isset($success)): ?>
@@ -134,8 +134,8 @@
                                     <td><?= $supp["email"] ?></td>
                                     <td><?= $supp["password"] ?></td>
                                     <td class="hide-print">
-                                        <a href="edit.php?id=<?=$supp['id']?>" class="badge badge-warning hide-print">Edit</a>
-                                        <a href="index.php?delete=<?=$supp['id']?>" class="badge badge-danger hide-print">Hapus</a>
+                                        <a href="edit.php?id=<?=$supp['id']?>" class="badge badge-warning hide-print"><i class="fa fa-pencil"></i> Edit</a>
+                                        <a href="index.php?delete=<?=$supp['id']?>" class="badge badge-danger hide-print"><i class="fa fa-trash"></i> Hapus</a>
                                     </td>
                                 </tr>
                                 <?php endforeach ?>
