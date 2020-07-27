@@ -20,6 +20,7 @@
     if(isset($_GET['checkout'])){
         unset($_POST['checkout']);
         foreach($pemesanan as $pem){
+            unset($pem['id']);
             $pem['keterangan'] = 'checkout';
             $pem['total'] = $pem['harga']*$pem['jumlah'];
             $ins = insert('tb_pembelian',$pem);

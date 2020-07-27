@@ -68,15 +68,39 @@
                     </div>
                     <div class="form-group">
                         <label>Stok</label>
-                        <input type="number" name="stok" value="<?=$bahan_baku['stok']?>" oninvalid="setCustomValidity('Field ini harus di isi')" oninput="setCustomValidity('')" class="form-control" required>
+                        <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">Kg</span>
+                          </div>
+                          <input type="number" name="stok" value="<?=$bahan_baku['stok']?>" oninvalid="setCustomValidity('Field ini harus di isi')" oninput="setCustomValidity('')" class="form-control" required>
+                          <div class="input-group-append">
+                            <span class="input-group-text">.00</span>
+                          </div>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label>Stok Minimal</label>
-                        <input type="number" name="min_stok" value="<?=$bahan_baku['min_stok']?>" oninvalid="setCustomValidity('Field ini harus di isi')" oninput="setCustomValidity('')" class="form-control" required>
+                        <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">Kg</span>
+                          </div>
+                          <input type="number" name="min_stok" value="<?=$bahan_baku['min_stok']?>" oninvalid="setCustomValidity('Field ini harus di isi')" oninput="setCustomValidity('')" class="form-control" required>
+                          <div class="input-group-append">
+                            <span class="input-group-text">.00</span>
+                          </div>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label>Harga</label>
-                        <input type="number" name="harga" value="<?=$bahan_baku['harga']?>" oninvalid="setCustomValidity('Field ini harus di isi')" oninput="setCustomValidity('')" class="form-control" required>
+                        <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">Rp.</span>
+                          </div>
+                          <input type="number" name="harga" value="<?=$bahan_baku['harga']?>" oninvalid="setCustomValidity('Field ini harus di isi')" oninput="setCustomValidity('')" class="form-control" required>
+                          <div class="input-group-append">
+                            <span class="input-group-text">.00</span>
+                          </div>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label>Keterangan</label>

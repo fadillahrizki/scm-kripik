@@ -142,9 +142,9 @@
                     <div class="form-group mx-3">
                         <label>&nbsp;</label>
                         <br>
-                        <button class="btn btn-info" name="filter">Cari</button>
+                        <button class="btn btn-info" name="filter"><i class="fa fa-search"></i> Cari</button>
                         <?php // if(count($pembelian)):?>
-                            <button class="btn btn-success" type="button" onclick="window.print()">Cetak</button>
+                            <button class="btn btn-success" type="button" onclick="window.print()"><i class="fa fa-print"></i> Cetak</button>
                         <?php // endif ?>
                     </div>
                 </form>

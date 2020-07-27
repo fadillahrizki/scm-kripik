@@ -16,7 +16,10 @@
 
     require_once '../layouts/header.php';
 
-    $bahan = get("tb_bahan_baku");
+    if($_SESSION['user']['level'] == 'admin')
+        $bahan = get("tb_bahan_baku");
+    else
+        $bahan = getBy("tb_bahan_baku",['supplier_id'=>$_SESSION['user']['id']]);
 
 ?>
 <style>
@@ -78,10 +81,12 @@
             <div class="card-body">
                 <div class="d-flex justify-content-between py-3">
                     <h5>Data Bahan Baku</h5>
+                    <?php if($_SESSION['user']['level'] == 'admin'): ?>
                     <div>
                     <button class="btn btn-primary btn-sm" type="button" onclick="window.print()"><i class="fa fa-print"></i> Cetak</button>
                     <a href="create.php" class="btn btn-success btn-sm"><i class="fa fa-plus"></i> Tambah</a>
                     </div>
+                    <?php endif ?>
                 </div>
                 <?php if(isset($success)): ?>
                     <div class="alert alert-success">Berhasil menghapus data</div>
@@ -136,9 +141,17 @@
                                     </td>
                                     <td><?= $bahan_baku["keterangan"] ?></td>
                                     <td class="hide-print">
+                                        <?php if($_SESSION['user']['level'] == 'admin'): ?>
                                         <a href="pemakaian.php?id=<?=$bahan_baku['id']?>" class="badge badge-success hide-print">Pemakaian</a>
                                         <a href="edit.php?id=<?=$bahan_baku['id']?>" class="badge badge-warning hide-print"><i class="fa fa-pencil"></i> Edit</a>
                                         <a href="index.php?delete=<?=$bahan_baku['id']?>" class="badge badge-danger hide-print"><i class="fa fa-trash"></i> Hapus</a>
+                                        <?php else: ?>
+                                            <?php if($bahan_baku['stok'] <= $bahan_baku['min_stok']): ?>
+                                        <a href="https://web.whatsapp.com/send?phone=6282273329997&text=Stok <?=$bahan_baku['nama_bahan_baku']?> anda sudah hampir habis. apakah anda akan memesan lagi ?" class="badge badge-success hide-print"><i class="fa fa-whatsapp"></i> Kirim Pesan WA</a>
+                                        <?php else: ?>
+                                            -
+                                        <?php endif ?>
+                                        <?php endif ?>
                                     </td>
                                 </tr>
                                 <?php endforeach ?>

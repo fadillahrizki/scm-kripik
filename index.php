@@ -28,6 +28,21 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <?php
+                    if($_SESSION['user']['level'] != 'supplier' && $current == "dashboard"){
+                    $bahan = get("tb_bahan_baku");
+                    foreach($bahan as $bb):
+                        if($bb['stok'] > $bb['min_stok']) continue;
+                    ?>
+                    <div class="alert alert-warning" role="alert">
+                        Stok Bahan Baku <?= $bb['nama_bahan_baku'] ?> sudah mencapai batas minimal dan harus di pesan.
+                        Silahkan klik <a href="/pemesanan/create.php?bahan_baku=<?=$bb['nama_bahan_baku']?>">disini</a> untuk memesan bahan baku.
+                    </div>
+                    <?php endforeach; } ?>
+                </div>
+            </div>
 
 <!-- Small boxes (Stat box) -->
 <div class="row">

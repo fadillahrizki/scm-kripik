@@ -118,7 +118,6 @@
                                 <th>Nomor Handphone</th>
                                 <th>Username</th>
                                 <th>Email</th>
-                                <th>Password</th>
                                 <th class="hide-print">Aksi</th>
                             </tr>
                         </thead>
@@ -132,7 +131,6 @@
                                     <td><?= $supp["no_handphone"] ?></td>
                                     <td><?= $supp["username"] ?></td>
                                     <td><?= $supp["email"] ?></td>
-                                    <td><?= $supp["password"] ?></td>
                                     <td class="hide-print">
                                         <a href="edit.php?id=<?=$supp['id']?>" class="badge badge-warning hide-print"><i class="fa fa-pencil"></i> Edit</a>
                                         <a href="index.php?delete=<?=$supp['id']?>" class="badge badge-danger hide-print"><i class="fa fa-trash"></i> Hapus</a>

@@ -49,16 +49,16 @@ if($current != "login"){
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
-      <li class="nav-item d-none d-sm-inline-block">
+      <!-- <li class="nav-item d-none d-sm-inline-block">
         <a href="index3.html" class="nav-link">Home</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contact</a>
-      </li>
+      </li> -->
     </ul>
 
     <!-- SEARCH FORM -->
-    <form class="form-inline ml-3">
+    <!-- <form class="form-inline ml-3">
       <div class="input-group input-group-sm">
         <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
         <div class="input-group-append">
@@ -67,7 +67,7 @@ if($current != "login"){
           </button>
         </div>
       </div>
-    </form>
+    </form> -->
 
   </nav>
   <!-- /.navbar -->
@@ -147,7 +147,15 @@ if($current != "login"){
             </li>
 
             <?php elseif($_SESSION["user"]["level"] == "supplier"): ?>
-
+            <li class="nav-item">
+                <a href="/bahan_baku/index.php" class="nav-link <?= $current == "data bahan baku" ? "active" : "" ?>">
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-archive nav-icon" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M2 5v7.5c0 .864.642 1.5 1.357 1.5h9.286c.715 0 1.357-.636 1.357-1.5V5h1v7.5c0 1.345-1.021 2.5-2.357 2.5H3.357C2.021 15 1 13.845 1 12.5V5h1z"/>
+                    <path fill-rule="evenodd" d="M5.5 7.5A.5.5 0 0 1 6 7h4a.5.5 0 0 1 0 1H6a.5.5 0 0 1-.5-.5zM15 2H1v2h14V2zM1 1a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H1z"/>
+                    </svg>
+                    Bahan Baku
+                </a>
+            </li>
             <li class="nav-item">
                 <a href="/pembelian/index.php" class="nav-link <?= $current == "data pembelian" ? "active" : "" ?>">
                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi nav-icon bi-bag-check" fill="currentColor" xmlns="http://www.w3.org/2000/svg">

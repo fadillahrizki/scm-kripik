@@ -45,6 +45,20 @@ function get($tbl){
     return $res->fetch_all(MYSQLI_ASSOC);
 }
 
+function getBy($tbl,$clause){
+    global $conn;
+    $and = "";
+    foreach($clause as $k => $v)
+    {
+        $and .= $k."='".$v."'";
+        if(next($clause))
+            $and .= " AND ";
+    }
+    $query = "SELECT * FROM $tbl WHERE $and";
+    $res = $conn->query($query);
+    return $res->fetch_all(MYSQLI_ASSOC);
+}
+
 function truncate($tbl){
     global $conn;
     $query = "TRUNCATE $tbl";
