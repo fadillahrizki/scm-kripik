@@ -134,9 +134,9 @@
                                     <td><?= $bahan_baku["id"] ?></td>
                                     <td><?= single("tb_supplier",$bahan_baku["supplier_id"])["nama_supplier"] ?></td>
                                     <td><?= $bahan_baku["nama_bahan_baku"] ?></td>
-                                    <td><?= number_format($bahan_baku["harga"]) ?></td>
+                                    <td>Rp. <?= number_format($bahan_baku["harga"]) ?></td>
                                     <td>
-                                        <?= $bahan_baku["stok"] ?><br>
+                                        <?= $bahan_baku["stok"] ?> Kg<br>
                                         <a href="#" class="badge badge-success hide-print">Min : <?= $bahan_baku['min_stok']?></a>
                                     </td>
                                     <td><?= $bahan_baku["keterangan"] ?></td>

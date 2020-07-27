@@ -132,10 +132,10 @@
                                 <!-- <td><?= $pem["id_admin"] ?></td> -->
                                 <td><?= $pem["nama_bahan_baku"] ?></td>
                                 <td><?= $pem["tanggal"] ?></td>
-                                <td><?= $pem["jumlah"] ?></td>
-                                <td><?= number_format($pem["harga"]) ?></td>
+                                <td><?= $pem["jumlah"] ?> Kg</td>
+                                <td>Rp. <?= number_format($pem["harga"]) ?></td>
                                 <td> <span class="badge badge-warning"> <?= $pem["keterangan"] ?></span></td>
-                                <td><?= number_format($subtotal) ?></td>
+                                <td>Rp. <?= number_format($subtotal) ?></td>
                                 <td>
                                     <a href="edit.php?id=<?=$pem['id']?>" class="badge badge-warning"><i class="fa fa-pencil"></i> Edit</a>
                                     <a href="index.php?delete=<?=$pem['id']?>" class="badge badge-danger"><i class="fa fa-trash"></i> Hapus</a>
@@ -157,7 +157,7 @@
                             <td></td>
                             <td></td>
                             <td><b>Total</b></td>
-                            <td><?= number_format($total) ?></td>
+                            <td>Rp. <?= number_format($total) ?></td>
                             <td></td>
                         </tr>
                         <?php endif ?>

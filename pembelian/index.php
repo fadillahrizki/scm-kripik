@@ -196,11 +196,11 @@
                                     <td>
                                         <b>Nama : <?= $pem["nama_bahan_baku"] ?></b>
                                         <br>
-                                        <span>Harga : <?= number_format($pem["harga"]) ?></span>
+                                        <span>Harga : Rp. <?= number_format($pem["harga"]) ?></span>
                                         <br>
                                         <span>Tanggal : <?= $pem["tanggal"] ?></span>
                                     </td>
-                                    <td><?= $pem["jumlah"] ?></td>
+                                    <td><?= $pem["jumlah"] ?> Kg</td>
                                     <td>
                                     <?php if($pem['keterangan'] == 'checkout'): ?>
                                         <span class="badge badge-warning">Sedang di Proses</span>
@@ -214,7 +214,7 @@
                                         <span class="badge badge-danger"><?= $pem["keterangan"] ?></span>
                                     <?php endif ?>
                                     </td>
-                                    <td><?= number_format($pem["total"]) ?></td>
+                                    <td>Rp. <?= number_format($pem["total"]) ?></td>
                                     <?php if($_SESSION['user']['level'] == 'supplier'): ?>
                                         <td class="no-print">
                                             <a href="index.php?available=<?=$pem['id']?>" class="badge badge-success">Bahan baku tersedia</a>

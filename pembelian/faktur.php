@@ -125,11 +125,11 @@
                                     <td>
                                         <b>Nama : <?= $pem["nama_bahan_baku"] ?></b>
                                         <br>
-                                        <span>Harga : <?= number_format($pem["harga"]) ?></span>
+                                        <span>Harga : Rp. <?= number_format($pem["harga"]) ?></span>
                                         <br>
                                         <span>Tanggal : <?= $pem["tanggal"] ?></span>
                                     </td>
-                                    <td><?= $pem["jumlah"] ?></td>
+                                    <td><?= $pem["jumlah"] ?> Kg</td>
                                     <td>
                                     <?php if($pem['keterangan'] == 'checkout'): ?>
                                         <span class="badge badge-warning"><?= $pem["keterangan"] ?></span>
@@ -143,12 +143,12 @@
                                         <span class="badge badge-danger"><?= $pem["keterangan"] ?></span>
                                     <?php endif ?>
                                     </td>
-                                    <td><?= number_format($pem["total"]) ?></td>
+                                    <td>Rp. <?= number_format($pem["total"]) ?></td>
                                 </tr>
                                 <?php endforeach ?>
                                 <tr>
                                     <td colspan="4"> <b> Total :  </b></td>
-                                    <td> <b> <?=number_format($total)?> </b> </td>
+                                    <td>Rp. <b> <?=number_format($total)?> </b> </td>
                                 </tr>
                             <?php else: ?>
                                 <tr class="text-center">
