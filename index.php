@@ -90,7 +90,7 @@
                     <div class="col-sm-12">
                         <h4 align="center">Bahan Baku Keripik UD Selasih</h4>
                         <p></p>
-                        <div class="gallery">
+                        <div class="gallery" style="overflow: auto;height: 160px;margin:auto;width: 560px">
                         <?php 
                         $items = [
                             "",
@@ -100,13 +100,16 @@
                             "Ubi Rambat"
                         ];
                         for($i=1;$i<=4;$i++) { ?>
-                            <div class="gallery-item">
-                                <img src="/assets/bahan-baku-<?=$i?>.jpeg">
+                            <div class="gallery-item" style="width: 130px;float: left;height: 130px;margin-right: 10px">
+                                <img src="/assets/bahan-baku-<?=$i?>.jpeg" width="100%" height="100%" style="object-fit: cover;">
                                 <center>
                                     <span><?= $items[$i] ?></span>
                                 </center>
                             </div>
                         <?php } ?>
+                        </div>
+                        <div style="display: block;">
+                        <br><br>
                         </div>
                     </div>
                 </div>

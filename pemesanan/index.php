@@ -143,22 +143,24 @@
                                 </td>
                             </tr>
                             <?php endforeach ?>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td><b>Total</b></td>
-                                <td><?= number_format($total) ?></td>
-                                <td></td>
-                            </tr>
                         <?php else: ?>
                             <tr class="text-center">
                                 <td colspan="8">Tidak ada Data</td>
                             </tr>
                         <?php endif ?>
                     </tbody>
+                    <tfoot>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><b>Total</b></td>
+                            <td><?= number_format($total) ?></td>
+                            <td></td>
+                        </tr>
+                    </tfoot>
                 </table>
             </div>
         </div>
