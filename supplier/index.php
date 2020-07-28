@@ -30,7 +30,7 @@
         visibility: hidden;
     }
 
-    .hide-print {
+    .hide-print, .dataTables_paginate.paging_simple_numbers {
         display: none;
     }
 
