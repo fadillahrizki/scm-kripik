@@ -69,7 +69,7 @@
         visibility: hidden;
     }
 
-    .no-print {
+    .no-print, .dataTables_paginate.paging_simple_numbers {
         display: none;
     }
 

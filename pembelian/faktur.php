@@ -16,7 +16,7 @@
 }
 
 @media print{
-    body  {
+    body, .dataTables_paginate.paging_simple_numbers  {
         visibility: hidden;
     }
 
