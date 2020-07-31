@@ -6,6 +6,7 @@
 
     if(isset($_POST["simpan"])){
         unset($_POST["simpan"]);
+        $_POST['tanggal'] = date("Y-m-d");
         $res = insert("tb_pemakaian",$_POST);
         updateBahan(['stok'=>$bahan_baku['stok']-$_POST['jumlah']],$_POST['nama_bahan_baku']);
         if($res){

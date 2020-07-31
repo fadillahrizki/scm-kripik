@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 27, 2020 at 03:32 AM
+-- Generation Time: Jul 31, 2020 at 03:39 PM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -43,7 +43,22 @@ CREATE TABLE `tb_bahan_baku` (
 --
 
 INSERT INTO `tb_bahan_baku` (`id`, `supplier_id`, `nama_bahan_baku`, `harga`, `stok`, `min_stok`, `keterangan`) VALUES
-(1, 1, 'Bahan 1', 10000, 100, 5, 'Banyak');
+(1, 1, 'Bahan 1', 10000, 48, 50, 'Banyak'),
+(2, 2, 'Bahan Baku 2', 10000, 104, 20, 'oke');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_order`
+--
+
+CREATE TABLE `tb_order` (
+  `id` int(11) NOT NULL,
+  `id_supplier` int(11) NOT NULL,
+  `status` int(11) NOT NULL,
+  `bukti` varchar(100) NOT NULL,
+  `tanggal` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -55,8 +70,16 @@ CREATE TABLE `tb_pemakaian` (
   `id` int(11) NOT NULL,
   `nama_bahan_baku` varchar(255) NOT NULL,
   `jumlah` int(11) NOT NULL,
-  `keterangan` varchar(255) NOT NULL
+  `keterangan` varchar(255) NOT NULL,
+  `tanggal` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_pemakaian`
+--
+
+INSERT INTO `tb_pemakaian` (`id`, `nama_bahan_baku`, `jumlah`, `keterangan`, `tanggal`) VALUES
+(1, 'Bahan 1', 2, 'Di pakai', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -67,6 +90,7 @@ CREATE TABLE `tb_pemakaian` (
 CREATE TABLE `tb_pembelian` (
   `id` int(11) NOT NULL,
   `id_supplier` int(11) NOT NULL,
+  `id_order` int(11) NOT NULL,
   `nama_bahan_baku` varchar(255) NOT NULL,
   `tanggal` date NOT NULL,
   `jumlah` int(11) NOT NULL,
@@ -79,8 +103,11 @@ CREATE TABLE `tb_pembelian` (
 -- Dumping data for table `tb_pembelian`
 --
 
-INSERT INTO `tb_pembelian` (`id`, `id_supplier`, `nama_bahan_baku`, `tanggal`, `jumlah`, `harga`, `keterangan`, `total`) VALUES
-(4, 1, 'Bahan 1', '2020-07-27', 2, 10000, 'checkout', 20000);
+INSERT INTO `tb_pembelian` (`id`, `id_supplier`, `id_order`, `nama_bahan_baku`, `tanggal`, `jumlah`, `harga`, `keterangan`, `total`) VALUES
+(1, 1, 0, 'Bahan 1', '2020-07-27', 1, 10000, 'checkout', 10000),
+(2, 2, 0, 'Bahan Baku 2', '2020-07-27', 2, 10000, 'selesai', 20000),
+(4, 1, 0, 'Bahan 1', '2020-07-27', 2, 10000, 'checkout', 20000),
+(5, 2, 0, 'Bahan Baku 2', '2020-07-27', 2, 10000, 'selesai', 20000);
 
 -- --------------------------------------------------------
 
@@ -152,6 +179,12 @@ ALTER TABLE `tb_bahan_baku`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `tb_order`
+--
+ALTER TABLE `tb_order`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `tb_pemakaian`
 --
 ALTER TABLE `tb_pemakaian`
@@ -189,19 +222,25 @@ ALTER TABLE `tb_user`
 -- AUTO_INCREMENT for table `tb_bahan_baku`
 --
 ALTER TABLE `tb_bahan_baku`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `tb_order`
+--
+ALTER TABLE `tb_order`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tb_pemakaian`
 --
 ALTER TABLE `tb_pemakaian`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tb_pembelian`
 --
 ALTER TABLE `tb_pembelian`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tb_pemesanan`

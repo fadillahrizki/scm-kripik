@@ -129,8 +129,16 @@
                         </thead>
                         <tbody>
                             <?php if(count($bahan) > 0): ?>
-                                <?php foreach($bahan as $bahan_baku): ?>
-                                <tr>
+                                <?php 
+                                foreach($bahan as $bahan_baku): 
+                                    $bg = '';
+                                    if($bahan_baku["stok"] <= $bahan_baku['min_stok'])
+                                        $bg = 'bg-warning';
+                                    elseif($bahan_baku['stok'] == 0)
+                                        $bg = 'bg-danger';
+
+                                ?>
+                                <tr class="<?= $bg ?>">
                                     <td><?= $bahan_baku["id"] ?></td>
                                     <td><?= single("tb_supplier",$bahan_baku["supplier_id"])["nama_supplier"] ?></td>
                                     <td><?= $bahan_baku["nama_bahan_baku"] ?></td>

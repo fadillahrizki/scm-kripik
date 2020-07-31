@@ -50,7 +50,7 @@
         }
     }
 
-    require_once '../layouts/header.php';
+    // require_once '../layouts/header.php';
 
     $pembelian = $_SESSION['user']['level'] == 'supplier' ? getForSupplier($_SESSION['user']['id']) : get("tb_pembelian");
     if(isset($_GET['filter'])){
@@ -58,97 +58,8 @@
     }
 ?>
 
-<style>
-
-.text-print{
-    display: none;
-}
-
-@media print{
-    body  {
-        visibility: hidden;
-    }
-
-    .no-print, .dataTables_paginate.paging_simple_numbers {
-        display: none;
-    }
-
-    .text-print{
-        display: block;
-    }
-
-    #print {
-        visibility: visible;
-        position: fixed;
-        top:0;
-        left:0;
-        width: 100%;
-    }
-}
-
-</style>
-
 <!-- Content Header (Page header) -->
-<div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Pembelian</h1>
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="/">Home</a></li>
-              <li class="breadcrumb-item active">Pembelian</li>
-            </ol>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
 
-    <!-- Main content -->
-    <section class="content">
-        <div class="container-fluid">
-
-<div class="row">
-    <div class="col-12">
-        <div class="card">
-            <div class="card-body">
-                <h5>Data Pembelian</h5>
-                <?php if(isset($success)): ?>
-                    <div class="alert alert-success">Berhasil menghapus data</div>
-                <?php elseif(isset($failed)): ?>
-                    <div class="alert alert-danger">Gagal menghapus data</div>
-                <?php endif ?>
-                <?php if($_SESSION['user']['level'] == 'admin'): ?>
-                <form method="get" class="py-3 d-flex justify-content-start">    
-                    <div class="form-group">
-                        <label>Dari tanggal</label>
-                        <input type="date" value="<?=@$_GET['from']?>" name="from" class="form-control">
-                    </div>
-                    <div class="form-group mx-3">
-                        <label>Sampai tanggal</label>
-                        <input type="date" value="<?=@$_GET['to']?>" name="to" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label>Status</label>
-                        <select class="form-control" name="status">
-                            <option value="">- Status -</option>
-                            <option value="ditolak" <?= isset($_GET['status']) && $_GET['status'] == 'ditolak' ? 'selected=""' : ''?>>Di Tolak</option>
-                            <option value="diterima" <?= isset($_GET['status']) && $_GET['status'] == 'diterima' ? 'selected=""' : ''?>>Di Terima</option>
-                            <option value="selesai" <?= isset($_GET['status']) && $_GET['status'] == 'selesai' ? 'selected=""' : ''?>>Selesai</option>
-                        </select>
-                    </div>
-                    <div class="form-group mx-3">
-                        <label>&nbsp;</label>
-                        <br>
-                        <button class="btn btn-info" name="filter"><i class="fa fa-search"></i> Cari</button>
-                        <?php // if(count($pembelian)):?>
-                            <a href="/pembelian/cetak.php?from=<?=@$_GET['from']?>&to=<?=@$_GET['to']?>&status=<?=@$_GET['status']?>" class="btn btn-success" target="_blank"><i class="fa fa-print"></i> Cetak</a>
-                        <?php // endif ?>
-                    </div>
-                </form>
-                <?php endif ?>
                 <div id="print">
                     <div class="text-center py-3 text-print">
                         <table width="100%">
@@ -185,7 +96,6 @@
                                 <th>Jumlah</th>
                                 <th>Keterangan</th>
                                 <th>Total</th>
-                                <th class="no-print">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -215,18 +125,6 @@
                                     <?php endif ?>
                                     </td>
                                     <td>Rp. <?= number_format($pem["total"]) ?></td>
-                                    <?php if($_SESSION['user']['level'] == 'supplier'): ?>
-                                        <td class="no-print">
-                                            <a href="index.php?available=<?=$pem['id']?>" class="badge badge-success">Bahan baku tersedia</a>
-                                            <a href="index.php?unavailable=<?=$pem['id']?>" class="badge badge-danger">Bahan baku tidak tersedia</a>
-                                        </td>
-                                    <?php elseif($pem['keterangan'] == 'diterima'): ?>
-                                        <td class="no-print">
-                                            <a href="index.php?confirm=<?=$pem['id']?>" class="badge badge-success">Konfirmasi</a>
-                                        </td>
-                                    <?php else: ?>
-                                        <td class="no-print">Tidak ada aksi</td>
-                                    <?php endif ?>
                                 </tr>
                                 <?php endforeach ?>
                             <?php else: ?>
@@ -236,13 +134,10 @@
                             <?php endif ?>
                         </tbody>
                     </table>
+                    <br><br>
+                    Kisaran, <?= date("d-m-Y")?><br>
+                    <b>Diketahui Oleh</b>
+
+                    <br><br><br><br><br>
+                    <b>SELAMET</b>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<?php
-    require_once '../layouts/footer.php';
-?>
-
