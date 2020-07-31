@@ -18,18 +18,16 @@
     $supplier = get("tb_supplier");
 
     if(isset($_GET['checkout'])){
-        unset($_POST['checkout']);
+        unset($_GET['checkout']);
         foreach($pemesanan as $pem){
             unset($pem['id']);
             $pem['keterangan'] = 'checkout';
             $pem['total'] = $pem['harga']*$pem['jumlah'];
             $ins = insert('tb_pembelian',$pem);
-            if($ins){
-                $trun = truncate('tb_pemesanan');
-                if($trun){
-                    header("location:index.php");
-                }
-            }
+        }
+        $trun = truncate('tb_pemesanan');
+        if($trun){
+            header("location:index.php");
         }
     }
 
