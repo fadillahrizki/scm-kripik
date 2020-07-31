@@ -129,6 +129,8 @@ function insert($tbl,$data){
     }
     $query = "INSERT INTO $tbl $key VALUES $val";
     $res = $conn->query($query);
+    if($res)
+        return $conn->insert_id;
     return $res;
 }
 

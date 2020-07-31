@@ -19,8 +19,23 @@
 
     if(isset($_GET['checkout'])){
         unset($_GET['checkout']);
+        $id_suppliers = [];
+        foreach($pemesanan as $pem){
+            if(in_array($pem['id_supplier'], $id_suppliers)) continue;
+            $id_suppliers[] = $pem['id_supplier'];
+        }
+
+        $id_orders = [];
+        foreach ($id_suppliers as $id) {
+            $id_orders[$id] = insert('tb_order',[
+                'id_supplier' => $id,
+                'tanggal'     => date('Y-m-d')
+            ]);
+        }
+
         foreach($pemesanan as $pem){
             unset($pem['id']);
+            $pem['id_order'] = $id_orders[$pem['id_supplier']];
             $pem['keterangan'] = 'checkout';
             $pem['total'] = $pem['harga']*$pem['jumlah'];
             $ins = insert('tb_pembelian',$pem);

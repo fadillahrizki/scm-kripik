@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 31, 2020 at 03:39 PM
+-- Generation Time: Jul 31, 2020 at 06:29 PM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -60,6 +60,14 @@ CREATE TABLE `tb_order` (
   `tanggal` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `tb_order`
+--
+
+INSERT INTO `tb_order` (`id`, `id_supplier`, `status`, `bukti`, `tanggal`) VALUES
+(1, 1, 0, '', '2020-07-31'),
+(2, 2, 0, '', '2020-07-31');
+
 -- --------------------------------------------------------
 
 --
@@ -104,10 +112,8 @@ CREATE TABLE `tb_pembelian` (
 --
 
 INSERT INTO `tb_pembelian` (`id`, `id_supplier`, `id_order`, `nama_bahan_baku`, `tanggal`, `jumlah`, `harga`, `keterangan`, `total`) VALUES
-(1, 1, 0, 'Bahan 1', '2020-07-27', 1, 10000, 'checkout', 10000),
-(2, 2, 0, 'Bahan Baku 2', '2020-07-27', 2, 10000, 'selesai', 20000),
-(4, 1, 0, 'Bahan 1', '2020-07-27', 2, 10000, 'checkout', 20000),
-(5, 2, 0, 'Bahan Baku 2', '2020-07-27', 2, 10000, 'selesai', 20000);
+(6, 1, 1, 'Bahan 1', '2020-07-31', 2, 10000, 'checkout', 20000),
+(7, 2, 2, 'Bahan Baku 2', '2020-07-31', 2, 10000, 'checkout', 20000);
 
 -- --------------------------------------------------------
 
@@ -228,7 +234,7 @@ ALTER TABLE `tb_bahan_baku`
 -- AUTO_INCREMENT for table `tb_order`
 --
 ALTER TABLE `tb_order`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tb_pemakaian`
@@ -240,7 +246,7 @@ ALTER TABLE `tb_pemakaian`
 -- AUTO_INCREMENT for table `tb_pembelian`
 --
 ALTER TABLE `tb_pembelian`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `tb_pemesanan`
