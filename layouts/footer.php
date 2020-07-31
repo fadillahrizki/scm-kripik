@@ -61,7 +61,7 @@ $('.table').DataTable({
       "searching": true,
       "ordering": true,
       "info": true,
-      "autoWidth": true,
+      "autoWidth": false,
       "responsive": true,
     });
 
