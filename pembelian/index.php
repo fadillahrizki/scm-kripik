@@ -63,6 +63,12 @@
         }
     }
 
+    if(isset($_GET['confirm-payment'])){
+        if(update('tb_order',['status'=>2],$_GET['id'])){
+            header("location:index.php");
+        }
+    }
+
     require_once '../layouts/header.php';
 
     $pembelian = $_SESSION['user']['level'] == 'supplier' ? getForSupplier($_SESSION['user']['id']) : get("tb_pembelian");
@@ -226,7 +232,7 @@
                                                     }
                                                 }else{
                                                     if($ord['status'] == 1){
-                                                        echo "Bukti telah dikirim";
+                                                        echo "<a href='/pembelian/index.php?confirm-payment=true&id=".$ord['id']."' style='color:#FFF'>Konfirmasi Bukti</a>";
                                                     }elseif($ord['status'] == 2){
                                                         echo "Dikonfirmasi";
                                                     }elseif($ord['status'] == 3){
@@ -235,9 +241,15 @@
                                                         echo "Bukti belum dikirim";
                                                     }
                                                 }
-                                                
                                                 ?>
                                             </span>
+                                            <?php 
+                                            if($_SESSION['user']['level'] == 'supplier'){ 
+                                                if($ord['status'] == 1){
+                                                    echo "<br><a href='/uploads/".$ord['bukti']."'>Lihat Bukti</a>";
+                                                }
+                                            } 
+                                            ?>
                                         </td>
                                     <?php endif; ?>
                                 </tr>
@@ -267,7 +279,7 @@
                                     <?php endif ?>
                                     </td>
                                     <td>Rp. <?= number_format($pem["total"]) ?></td>
-                                    <?php if($_SESSION['user']['level'] == 'supplier'): ?>
+                                    <?php if($_SESSION['user']['level'] == 'supplier' && $ord['status'] == 2): ?>
                                         <td class="no-print">
                                             <a href="index.php?available=<?=$pem['id']?>" class="badge badge-success">Bahan baku tersedia</a>
                                             <a href="index.php?unavailable=<?=$pem['id']?>" class="badge badge-danger">Bahan baku tidak tersedia</a>

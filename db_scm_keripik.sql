@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 31, 2020 at 06:29 PM
+-- Generation Time: Aug 02, 2020 at 12:07 PM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -65,7 +65,7 @@ CREATE TABLE `tb_order` (
 --
 
 INSERT INTO `tb_order` (`id`, `id_supplier`, `status`, `bukti`, `tanggal`) VALUES
-(1, 1, 0, '', '2020-07-31'),
+(1, 1, 2, 'WhatsApp Image 2020-07-26 at 20.34.25.jpeg', '2020-07-31'),
 (2, 2, 0, '', '2020-07-31');
 
 -- --------------------------------------------------------
