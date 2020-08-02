@@ -45,6 +45,19 @@
             $res = updateBahan($bahan,$bahan['nama_bahan_baku']);
             if($res){
                 unset($_GET);
+                update('tb_order',['status'=>2],$pem['id_order']);
+                header("location:index.php");
+            }
+        }
+    }
+
+    if(isset($_FILES['bukti'])){
+        $file = $_FILES['bukti'];
+        $target_dir = "../uploads/";
+        $target_file = $target_dir . $file["name"];
+
+        if(copy($file["tmp_name"], $target_file)){            
+            if(update('tb_order',['bukti'=>$file['name'],'status'=>1],$_POST['id'])){
                 header("location:index.php");
             }
         }
@@ -56,6 +69,8 @@
     if(isset($_GET['filter'])){
         $pembelian = getPembelianFilter($_GET);
     }
+
+    $orders = $_SESSION['user']['level'] == 'supplier' ? getForSupplier($_SESSION['user']['id']) : get('tb_order');
 ?>
 
 <style>
@@ -178,21 +193,58 @@
                         
                     </div>
                     <table class="table table-bordered table-stripped" width="100%">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Bahan Baku</th>
-                                <th>Jumlah</th>
-                                <th>Keterangan</th>
-                                <th>Total</th>
-                                <th class="no-print">Aksi</th>
-                            </tr>
-                        </thead>
                         <tbody>
-                            <?php if(count($pembelian) > 0): ?>
-                                <?php foreach($pembelian as $pem): ?>
+                            <?php if(count($orders) > 0): 
+                                foreach($orders as $ord):
+                                    $pems = getBy('tb_pembelian',['id_order'=>$ord['id']]);    
+                                    $suppl = single('tb_supplier',$ord['id_supplier']);
+                                ?>
+                                <tr class="bg-light">
+                                    <td colspan="3"><b>Supplier : <?=$suppl['nama_supplier']?></b></td>
+                                    <td><b>Tanggal : <?=$ord['tanggal']?></b></td>
+                                    <?php if($ord['bukti'] == null && $_SESSION['user']['level'] != 'supplier'): ?>
+                                        <form action="" method="post" enctype="multipart/form-data" id="upload" style="display:none">
+                                            <input type="hidden" name="id" value="<?=$ord['id']?>">
+                                            <input type="file" style="display:none" name="bukti" id="bukti">
+                                        </form>
+                                        <td>
+                                            <button class="btn btn-info btn-sm" onclick="upload()">Upload Bukti</button>
+                                        </td>
+                                    <?php else: ?>
+                                        <td>
+                                            <span class="badge badge-info">
+                                                <?php 
+                                                if($_SESSION['user']['level'] != 'supplier'){
+                                                    if($ord['status'] == 1){
+                                                        echo "Bukti telah dikirim";
+                                                    }elseif($ord['status'] == 2){
+                                                        echo "Dikonfirmasi";
+                                                    }elseif($ord['status'] == 3){
+                                                        echo "Ditolak";
+                                                    }elseif($ord['status'] == 4){
+                                                        echo "Selesai";
+                                                    }
+                                                }else{
+                                                    if($ord['status'] == 1){
+                                                        echo "Bukti telah dikirim";
+                                                    }elseif($ord['status'] == 2){
+                                                        echo "Dikonfirmasi";
+                                                    }elseif($ord['status'] == 3){
+                                                        echo "Ditolak";
+                                                    }else{
+                                                        echo "Bukti belum dikirim";
+                                                    }
+                                                }
+                                                
+                                                ?>
+                                            </span>
+                                        </td>
+                                    <?php endif; ?>
+                                </tr>
+                                <?php
+                                    foreach($pems as $pem):
+                                ?>
                                 <tr>
-                                    <td><?= $pem["id"] ?></td>
                                     <td>
                                         <b>Nama : <?= $pem["nama_bahan_baku"] ?></b>
                                         <br>
@@ -228,7 +280,8 @@
                                         <td class="no-print">Tidak ada aksi</td>
                                     <?php endif ?>
                                 </tr>
-                                <?php endforeach ?>
+                                <?php endforeach;?>
+                            <?php endforeach;?> 
                             <?php else: ?>
                                 <tr class="text-center">
                                     <td colspan="6">Tidak ada Data</td>
@@ -246,3 +299,16 @@
     require_once '../layouts/footer.php';
 ?>
 
+<script>
+
+function upload(){
+    var bukti = $("#bukti")
+    var upload = $("#upload")
+    bukti.trigger('click')
+
+    bukti.change(function(){
+        upload.trigger('submit')
+    })
+}
+
+</script>

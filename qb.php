@@ -69,7 +69,7 @@ function truncate($tbl){
 function getForSupplier($id){
     global $conn;
     $id = is_numeric($id) ? $id : "'$id'";
-    $query = "SELECT * FROM tb_pembelian WHERE id_supplier=$id AND keterangan='checkout'";
+    $query = "SELECT * FROM tb_order WHERE id_supplier=$id";
     $res = $conn->query($query);
     return $res->fetch_all(MYSQLI_ASSOC);
 }
