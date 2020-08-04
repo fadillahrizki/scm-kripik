@@ -83,8 +83,9 @@
                     <h5>Data Bahan Baku</h5>
                     <?php if($_SESSION['user']['level'] == 'admin'): ?>
                     <div>
-                    <button class="btn btn-primary btn-sm" type="button" onclick="window.print()"><i class="fa fa-print"></i> Cetak</button>
+                    <a href="cetak-bahan-baku.php" target="_blank" class="btn btn-primary btn-sm"><i class="fa fa-print"></i> Cetak</a>
                     <a href="create.php" class="btn btn-success btn-sm"><i class="fa fa-plus"></i> Tambah</a>
+                    <a href="cetak.php" target="_blank" class="btn btn-success btn-sm"><i class="fa fa-print"></i> Laporan Pemakaian</a>
                     </div>
                     <?php endif ?>
                 </div>
@@ -132,7 +133,7 @@
                                 <?php 
                                 foreach($bahan as $bahan_baku): 
                                     $bg = '';
-                                    if($bahan_baku["stok"] <= $bahan_baku['min_stok'])
+                                    if($bahan_baku["stok"] <= $bahan_baku['min_stok'] && $bahan_baku['stok'] != 0)
                                         $bg = 'bg-warning';
                                     elseif($bahan_baku['stok'] == 0)
                                         $bg = 'bg-danger';
@@ -170,6 +171,11 @@
                             <?php endif ?>
                         </tbody>
                     </table>
+                    <div class="py-3 text-print">
+                        Di ketahui Oleh
+                        <br><br><br><br>
+                        <b>UD. SELASIH</b>
+                    </div>
                 </div>
             </div>
         </div>

@@ -78,7 +78,7 @@
                 <div class="d-flex justify-content-between py-3">
                     <h5>Data Supplier</h5>
                     <div>
-                        <button class="btn btn-primary btn-sm" type="button" onclick="window.print()"><i class="fa fa-print"></i> Cetak</button>
+                        <a class="btn btn-primary btn-sm" href="cetak.php" target="_blank"><i class="fa fa-print"></i> Cetak</a>
                         <a href="create.php" class="btn btn-success btn-sm"><i class="fa fa-plus"></i> Tambah</a>
                     </div>
                 </div>
@@ -144,6 +144,11 @@
                             <?php endif ?>
                         </tbody>
                     </table>
+                    <div class="py-3 text-print">
+                        Di ketahui Oleh
+                        <br><br><br><br>
+                        <b>UD. SELASIH</b>
+                    </div>
                 </div>
             </div>
         </div>

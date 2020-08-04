@@ -204,11 +204,26 @@
                                 foreach($orders as $ord):
                                     $pems = getBy('tb_pembelian',['id_order'=>$ord['id']]);    
                                     $suppl = single('tb_supplier',$ord['id_supplier']);
+                                    $is_checkout = false;
+                                    $is_cancel   = false;
+                                    foreach($pems as $pem){
+                                        if($pem['keterangan'] == 'ditolak')
+                                        {
+                                            $is_cancel = true;
+                                        }
+
+                                        if($pem['keterangan'] == 'checkout')
+                                        {
+                                            $is_cancel = false;
+                                            $is_checkout = true;
+                                            break;
+                                        }
+                                    }
                                 ?>
                                 <tr class="bg-light">
                                     <td colspan="3"><b>Supplier : <?=$suppl['nama_supplier']?></b></td>
                                     <td><b>Tanggal : <?=$ord['tanggal']?></b></td>
-                                    <?php if($ord['bukti'] == null && $_SESSION['user']['level'] != 'supplier'): ?>
+                                    <?php if($ord['bukti'] == null && $_SESSION['user']['level'] != 'supplier' && $is_checkout == false && $is_cancel == false): ?>
                                         <form action="" method="post" enctype="multipart/form-data" id="upload" style="display:none">
                                             <input type="hidden" name="id" value="<?=$ord['id']?>">
                                             <input type="file" style="display:none" name="bukti" id="bukti">
@@ -218,6 +233,7 @@
                                         </td>
                                     <?php else: ?>
                                         <td>
+                                            <?php if($is_checkout == false && $is_cancel == false): ?>
                                             <span class="badge badge-info">
                                                 <?php 
                                                 if($_SESSION['user']['level'] != 'supplier'){
@@ -244,6 +260,11 @@
                                                 ?>
                                             </span>
                                             <?php 
+                                            elseif($is_cancel):
+                                            ?>
+                                            <span class="badge badge-danger">Di tolak</span>
+                                            <?php
+                                            endif;
                                             if($_SESSION['user']['level'] == 'supplier'){ 
                                                 if($ord['status'] == 1){
                                                     echo "<br><a href='/uploads/".$ord['bukti']."'>Lihat Bukti</a>";
@@ -279,12 +300,12 @@
                                     <?php endif ?>
                                     </td>
                                     <td>Rp. <?= number_format($pem["total"]) ?></td>
-                                    <?php if($_SESSION['user']['level'] == 'supplier' && $ord['status'] == 2): ?>
+                                    <?php if($_SESSION['user']['level'] == 'supplier' && $pem['keterangan'] == 'checkout'): ?>
                                         <td class="no-print">
                                             <a href="index.php?available=<?=$pem['id']?>" class="badge badge-success">Bahan baku tersedia</a>
                                             <a href="index.php?unavailable=<?=$pem['id']?>" class="badge badge-danger">Bahan baku tidak tersedia</a>
                                         </td>
-                                    <?php elseif($pem['keterangan'] == 'diterima'): ?>
+                                    <?php elseif($_SESSION['user']['level'] == 'admin' && $pem['keterangan'] == 'diterima' && $ord['status'] == 2): ?>
                                         <td class="no-print">
                                             <a href="index.php?confirm=<?=$pem['id']?>" class="badge badge-success">Konfirmasi</a>
                                         </td>
