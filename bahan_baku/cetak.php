@@ -6,7 +6,25 @@
 
     require_once '../qb.php';
 
-    $pemakaian = get("tb_pemakaian");
+    $bulan = $_GET['bulan'] < 10 ? '0'.$_GET['bulan'] : $_GET['bulan'];
+    $clause = $_GET['tahun'].'-'.$bulan;
+
+    $pemakaian = raw("SELECT SUM(jumlah) as jlh, nama_bahan_baku FROM tb_pemakaian GROUP BY nama_bahan_baku");
+
+    $bulan = [
+        1 => 'Januari',
+        2 => 'Februari',
+        3 => 'Maret',
+        4 => 'April',
+        5 => 'Mei',
+        6 => 'Juni',
+        7 => 'Juli',
+        8 => 'Agustus',
+        9 => 'September',
+        10 => 'Oktober',
+        11 => 'November',
+        12 => 'Desember',
+    ];
 
 $html = '
 <div id="print">
@@ -25,7 +43,7 @@ $html = '
         <tr>
             <td colspan="2">
                 <hr>
-                <h3>Laporan Pemakaian Bahan Baku</h3>
+                <h3>Laporan Pemakaian Bahan Baku Bulan '.$bulan[$_GET['bulan']].' Tahun '.$_GET['tahun'].'</h3>
             </td>
         </tr>
     </table>
@@ -35,7 +53,6 @@ $html = '
                 <th>#</th>
                 <th>Bahan Baku</th>
                 <th>Jumlah Pemakaian</th>
-                <th>Tanggal</th>
             </tr>
         </thead>
         <tbody>';
@@ -45,8 +62,7 @@ $html = '
                 <tr>
                     <td>'.++$k.'</td>
                     <td>'.$p['nama_bahan_baku'].'</td>
-                    <td>'.$p['jumlah'].' Kg</td>
-                    <td>'.$p['tanggal'].'</td>
+                    <td>'.$p['jlh'].' Kg</td>
                 </tr>';
                 endforeach;
             else:

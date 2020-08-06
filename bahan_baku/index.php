@@ -21,6 +21,21 @@
     else
         $bahan = getBy("tb_bahan_baku",['supplier_id'=>$_SESSION['user']['id']]);
 
+    $bulan = [
+    	1 => 'Januari',
+    	2 => 'Februari',
+    	3 => 'Maret',
+    	4 => 'April',
+    	5 => 'Mei',
+    	6 => 'Juni',
+    	7 => 'Juli',
+    	8 => 'Agustus',
+    	9 => 'September',
+    	10 => 'Oktober',
+    	11 => 'November',
+    	12 => 'Desember',
+    ];
+
 ?>
 <style>
 
@@ -51,7 +66,45 @@
 }
 
 </style>
-
+<form action="cetak.php">
+	<div class="modal fade" id="modal" tabindex="-1" role="dialog">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="modalTitle">Laporan Pemakaian</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        
+	            <div class="form-group">
+	                <label>Bulan</label>
+	                <select name="bulan" class="form-control" required="">
+	                    <option value="">- Pilih Bulan -</option>
+	                    <?php foreach($bulan as $k => $v): ?>
+	                        <option value="<?=$k?>"><?=$v?></option>
+	                    <?php endforeach ?>
+	                </select>
+	            </div>
+	            <div class="form-group">
+	                <label>Tahun</label>
+	                <select name="tahun" class="form-control" required="">
+	                    <option value="">- Pilih Tahun -</option>
+	                    <?php for($i=2020;$i>=2000;$i--): ?>
+	                        <option value="<?=$i?>"><?=$i?></option>
+	                    <?php endfor ?>
+	                </select>
+	            </div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+	        <button class="btn btn-primary">Cetak</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+</form>
 
      <!-- Content Header (Page header) -->
      <div class="content-header">
@@ -83,7 +136,7 @@
                     <h5>Data Bahan Baku</h5>
                     <?php if($_SESSION['user']['level'] == 'admin'): ?>
                     <div>
-                    <a href="cetak-bahan-baku.php" target="_blank" class="btn btn-primary btn-sm"><i class="fa fa-print"></i> Cetak</a>
+                    <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal"><i class="fa fa-print"></i> Cetak</a>
                     <a href="create.php" class="btn btn-success btn-sm"><i class="fa fa-plus"></i> Tambah</a>
                     <a href="cetak.php" target="_blank" class="btn btn-success btn-sm"><i class="fa fa-print"></i> Laporan Pemakaian</a>
                     </div>
