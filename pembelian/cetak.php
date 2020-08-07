@@ -56,9 +56,9 @@
     // require_once '../layouts/header.php';
 
     $pembelian = $_SESSION['user']['level'] == 'supplier' ? getForSupplier($_SESSION['user']['id']) : get("tb_pembelian");
-    if(isset($_GET['filter'])){
-        $pembelian = getPembelianFilter($_GET);
-    }
+    // if(isset($_GET['filter'])){
+    //     $pembelian = getPembelianFilter($_GET);
+    // }
 
     $orders = $_SESSION['user']['level'] == 'supplier' ? getForSupplier($_SESSION['user']['id']) : get('tb_order');
 
