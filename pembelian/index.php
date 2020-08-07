@@ -72,9 +72,9 @@
     require_once '../layouts/header.php';
 
     $pembelian = $_SESSION['user']['level'] == 'supplier' ? getForSupplier($_SESSION['user']['id']) : get("tb_pembelian");
-    if(isset($_GET['filter'])){
-        $pembelian = getPembelianFilter($_GET);
-    }
+    // if(isset($_GET['filter'])){
+    //     $pembelian = getPembelianFilter($_GET);
+    // }
 
     $orders = $_SESSION['user']['level'] == 'supplier' ? getForSupplier($_SESSION['user']['id']) : get('tb_order');
 ?>
@@ -202,7 +202,11 @@
                         <tbody>
                             <?php if(count($orders) > 0): 
                                 foreach($orders as $ord):
-                                    $pems = getBy('tb_pembelian',['id_order'=>$ord['id']]);    
+                                    $pems = getBy('tb_pembelian',['id_order'=>$ord['id']]);
+                                    if(isset($_GET['filter']))
+                                        $pems = getPembelianFilter($_GET,$ord['id']);
+
+                                    if(empty($pems)) continue;
                                     $suppl = single('tb_supplier',$ord['id_supplier']);
                                     $is_checkout = false;
                                     $is_cancel   = false;

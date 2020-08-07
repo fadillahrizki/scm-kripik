@@ -103,16 +103,16 @@ function getFaktur($id,$filter){
     return $res->fetch_all(MYSQLI_ASSOC);
 }
 
-function getPembelianFilter($filter){
+function getPembelianFilter($filter, $id){
     global $conn;
     $status = isset($filter['status']) && $filter['status'] != "" ? "'".$filter['status']."'" : "'checkout','ditolak','diterima','selesai'";
-    if($filter['from'] != "" && $filter['to'] !== "")
+    if($filter['from'] != "" && $filter['to'] != "")
     {
-        $query = "SELECT * FROM tb_pembelian WHERE keterangan IN ($status) AND tanggal BETWEEN '$filter[from]' AND '$filter[to]'";
+        $query = "SELECT * FROM tb_pembelian WHERE keterangan IN ($status) AND id_order=$id AND tanggal BETWEEN '$filter[from]' AND '$filter[to]'";
     }
     else
     {
-        $query = "SELECT * FROM tb_pembelian WHERE keterangan IN ($status)";
+        $query = "SELECT * FROM tb_pembelian WHERE keterangan IN ($status) AND id_order=$id";
     }
     $res = $conn->query($query);
     return $res->fetch_all(MYSQLI_ASSOC);
