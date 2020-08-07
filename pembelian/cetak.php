@@ -6,59 +6,7 @@
 
     require_once '../qb.php';
 
-    if(isset($_GET['delete'])){
-        $res = delete('tb_bahan_baku',$_GET['delete']);
-        if($res){
-            $success = true;
-            unset($_GET);
-            header("location:index.php");
-        }else{
-            $failed = true;
-        }
-    }
-
-    if(isset($_GET['available'])){
-        $pem = single('tb_pembelian',$_GET['available']);
-        $pem['keterangan'] = 'diterima';
-        $res = update('tb_pembelian',$pem,$pem['id']);
-        if($res){
-            unset($_GET);
-            header("location:index.php");
-        }
-    }
-
-    if(isset($_GET['unavailable'])){
-        $pem = single('tb_pembelian',$_GET['unavailable']);
-        $pem['keterangan'] = 'ditolak';
-        $res = update('tb_pembelian',$pem,$pem['id']);
-        if($res){
-            unset($_GET);
-            header("location:index.php");
-        }
-    }
-
-    if(isset($_GET['confirm'])){
-        $pem = single('tb_pembelian',$_GET['confirm']);
-        $pem['keterangan'] = 'selesai';
-        $res = update('tb_pembelian',$pem,$pem['id']);
-        
-        if($res){
-            $bahan = singleBahan($pem['nama_bahan_baku']);
-            $bahan['stok'] += $pem['jumlah'];
-            $res = updateBahan($bahan,$bahan['nama_bahan_baku']);
-            if($res){
-                unset($_GET);
-                header("location:index.php");
-            }
-        }
-    }
-
-    // require_once '../layouts/header.php';
-
     $pembelian = $_SESSION['user']['level'] == 'supplier' ? getForSupplier($_SESSION['user']['id']) : get("tb_pembelian");
-    // if(isset($_GET['filter'])){
-    //     $pembelian = getPembelianFilter($_GET);
-    // }
 
     $orders = $_SESSION['user']['level'] == 'supplier' ? getForSupplier($_SESSION['user']['id']) : get('tb_order');
 
@@ -95,10 +43,7 @@ $html = '<div id="print">
         <tbody>';
             if(count($orders) > 0): 
                 foreach($orders as $ord):
-                    $pems = getBy('tb_pembelian',['id_order'=>$ord['id']]);
-                    if(isset($_GET['filter']))
-                        $pems = getPembelianFilter($_GET,$ord['id']);
-
+                	$pems = getPembelianFilter($_GET,$ord['id']);
                     if(empty($pems)) continue;
                     $suppl = single('tb_supplier',$ord['id_supplier']);
                     $is_checkout = false;
@@ -207,7 +152,6 @@ $html = '<div id="print">
     <br><br><br><br><br>
     <b>SELAMET</b>
 </div>';
-
 
 // instantiate and use the dompdf class
 $dompdf = new Dompdf();
