@@ -136,9 +136,9 @@
                     <h5>Data Bahan Baku</h5>
                     <?php if($_SESSION['user']['level'] == 'admin'): ?>
                     <div>
-                    <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal"><i class="fa fa-print"></i> Cetak</a>
+                    <a href="cetak-bahan-baku.php" target="_blank" class="btn btn-success btn-sm"><i class="fa fa-print"></i> Cetak</a>
                     <a href="create.php" class="btn btn-success btn-sm"><i class="fa fa-plus"></i> Tambah</a>
-                    <a href="cetak.php" target="_blank" class="btn btn-success btn-sm"><i class="fa fa-print"></i> Laporan Pemakaian</a>
+                    <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal"><i class="fa fa-print"></i> Laporan Pemakaian</a>
                     </div>
                     <?php endif ?>
                 </div>
