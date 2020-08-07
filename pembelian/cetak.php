@@ -60,6 +60,8 @@
         $pembelian = getPembelianFilter($_GET);
     }
 
+    $orders = $_SESSION['user']['level'] == 'supplier' ? getForSupplier($_SESSION['user']['id']) : get('tb_order');
+
     
 $html = '<div id="print">
     <div class="text-center py-3 text-print">
@@ -87,29 +89,86 @@ $html = '<div id="print">
                 </td>
             </tr>
         </table>
+        
     </div>
-    <table class="table table-bordered table-stripped" width="100%" border="1" cellpadding="5">
-        <colgroup>
-            <col width="10%">
-            <col width="20%">
-            <col width="20%">
-            <col width="20%">
-            <col width="30%">
-        </colgroup>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Bahan Baku</th>
-                <th>Jumlah</th>
-                <th>Keterangan</th>
-                <th>Total</th>
-            </tr>
-        </thead>
+    <table border="1" width="100%">
         <tbody>';
-            if(count($pembelian) > 0):
-                foreach($pembelian as $k => $pem):
-                $html .= '<tr>
-                    <td>'.++$k.'</td>
+            if(count($orders) > 0): 
+                foreach($orders as $ord):
+                    $pems = getBy('tb_pembelian',['id_order'=>$ord['id']]);
+                    if(isset($_GET['filter']))
+                        $pems = getPembelianFilter($_GET,$ord['id']);
+
+                    if(empty($pems)) continue;
+                    $suppl = single('tb_supplier',$ord['id_supplier']);
+                    $is_checkout = false;
+                    $is_cancel   = false;
+                    foreach($pems as $pem){
+                        if($pem['keterangan'] == 'ditolak')
+                        {
+                            $is_cancel = true;
+                        }
+
+                        if($pem['keterangan'] == 'checkout')
+                        {
+                            $is_cancel = false;
+                            $is_checkout = true;
+                            break;
+                        }
+                    }
+                $html .= '
+                <tr class="bg-light">
+                    <td colspan="3"><b>Supplier : '.$suppl['nama_supplier'].'</b></td>
+                    <td><b>Tanggal : '.$ord['tanggal'].'</b></td>';
+                    if($ord['bukti'] == null && $_SESSION['user']['level'] != 'supplier' && $is_checkout == false && $is_cancel == false):
+                        $html .= '';
+                    else:
+                        $html .= '
+                        <td>';
+                            if($is_checkout == false && $is_cancel == false):
+                            $html .= '
+                            <span class="badge badge-info">
+                                ';
+                                if($_SESSION['user']['level'] != 'supplier'){
+                                    if($ord['status'] == 1){
+                                        $html .= "Bukti telah dikirim";
+                                    }elseif($ord['status'] == 2){
+                                        $html .= "Dikonfirmasi";
+                                    }elseif($ord['status'] == 3){
+                                        $html .= "Ditolak";
+                                    }elseif($ord['status'] == 4){
+                                        $html .= "Selesai";
+                                    }
+                                }else{
+                                    if($ord['status'] == 1){
+                                        $html .= "<a href='/pembelian/index.php?confirm-payment=true&id=".$ord['id']."' style='color:#FFF'>Konfirmasi Bukti</a>";
+                                    }elseif($ord['status'] == 2){
+                                        $html .= "Dikonfirmasi";
+                                    }elseif($ord['status'] == 3){
+                                        $html .= "Ditolak";
+                                    }else{
+                                        $html .= "Bukti belum dikirim";
+                                    }
+                                }
+                            $html .= '
+                            </span>';
+                            elseif($is_cancel):
+                            $html .= '
+                            <span class="badge badge-danger">Di tolak</span>';
+                            endif;
+                            if($_SESSION['user']['level'] == 'supplier'){ 
+                                if($ord['status'] == 1){
+                                    $html .= "<br><a href='/uploads/".$ord['bukti']."'>Lihat Bukti</a>";
+                                }
+                            } 
+                        $html .= '
+                        </td>';
+                    endif;
+                $html .= '
+                </tr>';
+                foreach($pems as $pem):
+                $html .= '
+                <tr>
                     <td>
                         <b>Nama : '.$pem["nama_bahan_baku"].'</b>
                         <br>
@@ -121,25 +180,25 @@ $html = '<div id="print">
                     <td>';
                     if($pem['keterangan'] == 'checkout'):
                         $html .= '<span class="badge badge-warning">Sedang di Proses</span>';
-                    elseif($pem['keterangan']=='diterima'):
-                        $html .= '<span class="badge badge-info">'.$pem["keterangan"].'</span>';
-                    elseif($pem['keterangan']=='diterima'):
-                        $html .= '<span class="badge badge-danger">'.$pem["keterangan"].'</span>';
-                    elseif($pem['keterangan']=='selesai'):
-                        $html .= '<span class="badge badge-success">'.$pem["keterangan"].'</span>';
-                    elseif($pem['keterangan']=='ditolak'):
-                        $html .= '<span class="badge badge-danger">'.$pem["keterangan"].'</span>';
+                    else:
+                        $html .= $pem["keterangan"];
                     endif;
-                    $html .= '</td>
+
+                    $html .= '
+                    </td>
                     <td>Rp. '.number_format($pem["total"]).'</td>
+                    <td></td>
                 </tr>';
                 endforeach;
+            endforeach;
             else:
-                $html .= '<tr class="text-center">
+                $html .= '
+                <tr class="text-center">
                     <td colspan="6">Tidak ada Data</td>
                 </tr>';
             endif;
-        $html .= '</tbody>
+        $html .= '
+        </tbody>
     </table>
     <br><br>
     Kisaran, '.date("d-m-Y").'<br>
