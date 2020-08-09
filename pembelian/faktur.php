@@ -4,9 +4,9 @@
 
     $pembelian = [];
 
-    if(isset($_GET['filter'])){
+    // if(isset($_GET['filter'])){
         $pembelian = getFaktur($_SESSION['user']['id'],$_GET);
-    }
+    // }
 ?>
 
 <style>
@@ -70,18 +70,18 @@
                 <form method="get" class="py-3 d-flex justify-content-start">    
                     <div class="form-group">
                         <label>Dari tanggal</label>
-                        <input type="date" value="<?=@$_GET['from']?>" name="from" class="form-control">
+                        <input type="date" value="<?=@$_GET['from']?>" id="from" name="from" class="form-control">
                     </div>
                     <div class="form-group mx-3">
                         <label>Sampai tanggal</label>
-                        <input type="date" value="<?=@$_GET['to']?>" name="to" class="form-control">
+                        <input type="date" value="<?=@$_GET['to']?>" id="to" name="to" class="form-control">
                     </div>
                     <div class="form-group">
                         <label>&nbsp;</label>
                         <br>
                         <button class="btn btn-info" name="filter"><i class="fa fa-search"></i> Cari</button>
                         <?php //if(count($pembelian)):?>
-                            <button class="btn btn-success" type="button" onclick="window.print()"><i class="fa fa-print"></i> Cetak</button>
+                            <a class="btn btn-success" href="javascript:void(0)" onclick="window.open('cetak-faktur.php?from='+from.value+'&to='+to.value)"><i class="fa fa-print"></i> Cetak</a>
                         <?php //endif ?>
                     </div>
                 </form>
