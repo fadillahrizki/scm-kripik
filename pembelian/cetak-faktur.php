@@ -24,7 +24,7 @@
                             <tr>
                                 <td colspan="2">
                                     <hr>
-                                    <h3 align="center">Faktur Penjualan</h3>
+                                    <h3 align="center">Faktur Pembelian</h3>
                                 </td>
                             </tr>
                         </table>
@@ -87,5 +87,5 @@ $dompdf->setPaper('A4', 'portrait');
 $dompdf->render();
 
 // Output the generated PDF to Browser
-$dompdf->stream("Faktur-Penjualan.pdf");
+$dompdf->stream("Faktur-Pembelian.pdf");
 

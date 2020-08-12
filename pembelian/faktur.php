@@ -115,6 +115,7 @@
                                 <th>Jumlah</th>
                                 <th>Keterangan</th>
                                 <th>Sub Total</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -144,15 +145,20 @@
                                     <?php endif ?>
                                     </td>
                                     <td>Rp. <?= number_format($pem["total"]) ?></td>
+                                    <td>
+                                        <a class="btn btn-success" href="javascript:void(0)" onclick="window.open('cetak-faktur.php?id=<?=$pem['id']?>')"><i class="fa fa-print"></i> Cetak</a>
+                                    </td>
                                 </tr>
                                 <?php endforeach ?>
                                 <tr>
                                     <td colspan="4"> <b> Total :  </b></td>
                                     <td>Rp. <b> <?=number_format($total)?> </b> </td>
+                                    <td></td>
                                 </tr>
                             <?php else: ?>
                                 <tr class="text-center">
                                     <td colspan="5">Tidak ada Data</td>
+                                    <td></td>
                                 </tr>
                             <?php endif ?>
                         </tbody>

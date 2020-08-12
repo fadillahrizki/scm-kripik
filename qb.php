@@ -98,8 +98,10 @@ function getForSupplier($id){
 function getFaktur($id,$filter){
     global $conn;
     $id = is_numeric($id) ? $id : "'$id'";
-    if($filter['from'] != "" && $filter['to'] != "")
+    if(isset($filter['from']) && $filter['from'] != "" && $filter['to'] != "")
         $query = "SELECT * FROM tb_pembelian WHERE id_supplier=$id AND keterangan IN ('diterima','selesai') AND tanggal BETWEEN '$filter[from]' AND '$filter[to]'";
+    elseif(isset($_GET['id']))
+        $query = "SELECT * FROM tb_pembelian WHERE id=$_GET[id]";
     else
         $query = "SELECT * FROM tb_pembelian WHERE id_supplier=$id AND keterangan IN ('diterima','selesai')";
     $res = $conn->query($query);
