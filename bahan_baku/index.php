@@ -186,10 +186,17 @@
                                 <?php 
                                 foreach($bahan as $bahan_baku): 
                                     $bg = '';
+                                    $keterangan = 'Tersedia';
                                     if($bahan_baku["stok"] <= $bahan_baku['min_stok'] && $bahan_baku['stok'] != 0)
+                                    {
                                         $bg = 'bg-warning';
+                                        $keterangan = 'Tersedia tetapi sudah hampir habis';
+                                    }
                                     elseif($bahan_baku['stok'] == 0)
+                                    {
+                                        $keterangan = 'Stok Habis';
                                         $bg = 'bg-danger';
+                                    }
 
                                 ?>
                                 <tr class="<?= $bg ?>">
@@ -201,7 +208,7 @@
                                         <?= $bahan_baku["stok"] ?> Kg<br>
                                         <a href="#" class="badge badge-success hide-print">Min : <?= $bahan_baku['min_stok']?> Kg</a>
                                     </td>
-                                    <td><?= $bahan_baku["keterangan"] ?></td>
+                                    <td><?= $keterangan ?></td>
                                     <td class="hide-print">
                                         <?php if($_SESSION['user']['level'] == 'admin'): ?>
                                         <!-- <a href="pemakaian.php?id=<?=$bahan_baku['id']?>" class="badge badge-success hide-print">Pemakaian</a> -->
