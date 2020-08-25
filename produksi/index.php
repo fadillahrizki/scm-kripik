@@ -76,7 +76,7 @@
                                 <tr>
                                     <td><?= ++$k ?></td>
                                     <td><?= $p['produk'] ?></td>
-                                    <td><?= $p['jumlah'] ?></td>
+                                    <td><?= $p['jumlah'] ?> Bungkus</td>
                                     <td><?= $p['tanggal'] ?></td>
                                     <td class="hide-print">
                                         <a href="index.php?delete=<?=$p['id']?>" class="badge badge-danger hide-print"><i class="fa fa-trash"></i> Hapus</a>
