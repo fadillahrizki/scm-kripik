@@ -138,7 +138,7 @@
                     <div>
                     <a href="cetak-bahan-baku.php" target="_blank" class="btn btn-success btn-sm"><i class="fa fa-print"></i> Cetak</a>
                     <a href="create.php" class="btn btn-success btn-sm"><i class="fa fa-plus"></i> Tambah</a>
-                    <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal"><i class="fa fa-print"></i> Laporan Pemakaian</a>
+                    <!-- <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal"><i class="fa fa-print"></i> Laporan Pemakaian</a> -->
                     </div>
                     <?php endif ?>
                 </div>
@@ -204,7 +204,7 @@
                                     <td><?= $bahan_baku["keterangan"] ?></td>
                                     <td class="hide-print">
                                         <?php if($_SESSION['user']['level'] == 'admin'): ?>
-                                        <a href="pemakaian.php?id=<?=$bahan_baku['id']?>" class="badge badge-success hide-print">Pemakaian</a>
+                                        <!-- <a href="pemakaian.php?id=<?=$bahan_baku['id']?>" class="badge badge-success hide-print">Pemakaian</a> -->
                                         <a href="edit.php?id=<?=$bahan_baku['id']?>" class="badge badge-warning hide-print"><i class="fa fa-pencil"></i> Edit</a>
                                         <a href="index.php?delete=<?=$bahan_baku['id']?>" class="badge badge-danger hide-print"><i class="fa fa-trash"></i> Hapus</a>
                                         <?php else: ?>
