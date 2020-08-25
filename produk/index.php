@@ -105,7 +105,7 @@
                                 <tr class="<?= $bg ?>">
                                     <td><?= ++$k ?></td>
                                     <td><?= $p['nama'] ?></td>
-                                    <td><?= $p['jumlah'] ?></td>
+                                    <td><?= $p['jumlah'] ?> Bungkus</td>
                                     <td>
                                         <a href="bahan_baku.php?id=<?=$p['id']?>" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i> Lihat Bahan Baku</a>
                                     </td>
