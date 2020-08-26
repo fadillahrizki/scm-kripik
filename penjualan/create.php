@@ -1,39 +1,18 @@
 <?php 
-    $current = "data produksi";
+    $current = "data penjualan";
     require_once '../layouts/header.php';
 
     $produk = get("tb_produk");
 
     if(isset($_POST["create"])){
         unset($_POST["create"]);
-        $fail = [];
-        $produksi_bahan_baku = getBy('tb_produksi_bahan_baku',['produk'=>$_POST['produk']]);
-        foreach($produksi_bahan_baku as $b)
+        $_produk = getBy("tb_produk",['nama'=>$_POST['produk']])[0];
+        if($_produk['jumlah'] < $_POST['jumlah'])
+            $failed = true;
+        else
         {
-            $bahan_baku = getBy('tb_bahan_baku',['nama_bahan_baku'=>$b['bahan_baku']])[0];
-            $jumlah = $_POST['jumlah'] * $b['jumlah'];
-            if($bahan_baku['stok'] < $jumlah)
-            {
-                $bahan_baku['dibutuhkan'] = $jumlah;
-                $fail[] = $bahan_baku;
-            }
-        }
-        if(empty($fail))
-        {
-            $produksi_bahan_baku = getBy('tb_produksi_bahan_baku',['produk'=>$_POST['produk']]);
-            foreach($produksi_bahan_baku as $b)
-            {
-                $bahan_baku = getBy('tb_bahan_baku',['nama_bahan_baku'=>$b['bahan_baku']])[0];
-                $jumlah = $_POST['jumlah'] * $b['jumlah'];
-                $bahan_baku['stok'] = $bahan_baku['stok'] - $jumlah;
-                update("tb_bahan_baku",$bahan_baku,$bahan_baku['id']);
-            }
-
-            $_produk = getBy("tb_produk",['nama'=>$_POST['produk']])[0];
-            $_produk['jumlah'] += $_POST['jumlah'];
-            update('tb_produk',$_produk,$_produk['id']);
-
-            $res = insert("tb_produksi",$_POST);
+            $res = insert("tb_penjualan",$_POST);
+            print_r($res);
             if($res){
                 $success = true;
             }else{
@@ -48,13 +27,13 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Tambah Produksi</h1>
+            <h1 class="m-0 text-dark">Tambah Penjualan</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="/">Home</a></li>
-              <li class="breadcrumb-item"><a href="/produksi/index.php">Produksi</a></li>              
-              <li class="breadcrumb-item active">Tambah Produksi</li>
+              <li class="breadcrumb-item"><a href="/produksi/index.php">Penjualan</a></li>              
+              <li class="breadcrumb-item active">Tambah Penjualan</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -75,18 +54,7 @@
                 <?php elseif(isset($failed)): ?>
                     <div class="alert alert-danger">Gagal menambah data</div>
                 <?php endif ?>
-                <?php if(!empty($fail)): ?>
-                <div class="alert alert-danger">
-                    <b>Terdapat Bahan Baku yang Kekurangan Stok</b>
-                    <ul>
-                        <?php foreach($fail as $b): ?>
-                        <li><?=$b['nama_bahan_baku']?> (Stok : <?=$b['stok']?> Kg, Dibutuhkan <?=$b['dibutuhkan']?> Kg)</li>
-                        <?php endforeach ?>
-                    </ul>
-                </div>
-                <?php endif ?>
                 <form method="post">
-                    <input type="hidden" name="status" value="produksi">
                     <div class="form-group">
                         <label>Nama Produk</label>
                         <select oninvalid="setCustomValidity('Field ini harus di isi')" oninput="setCustomValidity('')" class="form-control" required name="produk">
