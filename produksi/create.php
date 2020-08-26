@@ -30,7 +30,7 @@
             }
 
             $_produk = getBy("tb_produk",['nama'=>$_POST['produk']])[0];
-            $_produk['jumlah'] += 1;
+            $_produk['jumlah'] += $_POST['jumlah'];
             update('tb_produk',$_produk,$_produk['id']);
 
             $res = insert("tb_produksi",$_POST);

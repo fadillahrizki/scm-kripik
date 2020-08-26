@@ -79,7 +79,7 @@
                                 <tr class="<?= $bg ?>">
                                     <td><?= ++$k ?></td>
                                     <td><?= $b['bahan_baku'] ?></td>
-                                    <td><?= $b['jumlah']?></td>
+                                    <td><?= $b['jumlah']?> Kg</td>
                                     <td class="hide-print">
                                         <a href="bahan_baku.php?delete=<?=$b['id']?>" class="badge badge-danger hide-print"><i class="fa fa-trash"></i> Hapus</a>
                                     </td>
