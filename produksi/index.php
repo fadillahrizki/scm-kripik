@@ -75,7 +75,19 @@
                                 <?php foreach($produksi as $k => $p): ?>
                                 <tr>
                                     <td><?= ++$k ?></td>
-                                    <td><?= $p['produk'] ?></td>
+                                    <td>
+                                        <?= $p['produk'] ?>
+                                        <br>
+                                        <?php
+                                        $produksi_bahan_baku = getBy('tb_produksi_bahan_baku',['produk'=>$p['produk']]);
+                                        foreach($produksi_bahan_baku as $b)
+                                        {
+                                            $bahan_baku = getBy('tb_bahan_baku',['nama_bahan_baku'=>$b['bahan_baku']])[0];
+                                            $jumlah = $p['jumlah'] * $b['jumlah'];
+                                            echo "<b>".$b['bahan_baku']."</b> : ".$jumlah." Kg<br>";
+                                        }
+                                        ?>
+                                    </td>
                                     <td><?= $p['jumlah'] ?> Bungkus</td>
                                     <td><?= $p['tanggal'] ?></td>
                                     <td class="hide-print">

@@ -60,10 +60,17 @@ $html = '
             if(count($bahan) > 0):
                 foreach($bahan as $bahan_baku): 
                     $bg = '';
+                    $keterangan = 'Tersedia';
                     if($bahan_baku["stok"] <= $bahan_baku['min_stok'] && $bahan_baku['stok'] != 0)
+                    {
                         $bg = 'bg-warning';
+                        $keterangan = 'Tersedia tetapi sudah hampir habis';
+                    }
                     elseif($bahan_baku['stok'] == 0)
+                    {
+                        $keterangan = 'Stok Habis';
                         $bg = 'bg-danger';
+                    }
                 $html .= '
                 <tr class="'.$bg.'">
                     <td>'.$bahan_baku["id"].'</td>
@@ -73,7 +80,7 @@ $html = '
                     <td>
                         '.$bahan_baku["stok"].' Kg
                     </td>
-                    <td>'.$bahan_baku["keterangan"].'</td>
+                    <td>'.$keterangan.'</td>
                 </tr>';
                 endforeach;
             else:
