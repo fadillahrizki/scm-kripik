@@ -7,7 +7,7 @@ session_start();
 function login($data){
     global $conn;
     extract($data);
-    $query = "SELECT * FROM tb_user WHERE username='$username' AND password='$password'";
+    $query = "SELECT * FROM tb_user WHERE username='$username' AND password='".md5($password)."'";
     $res = $conn->query($query);
     $login = $res->fetch_assoc();
 
@@ -16,7 +16,7 @@ function login($data){
         $_SESSION["user"]["level"] = "admin";
         header("location:index.php");
     }else{
-        $query = "SELECT * FROM tb_supplier WHERE username='$username' AND password='$password'";
+        $query = "SELECT * FROM tb_supplier WHERE username='$username' AND password='".md5($password)."'";
         $res = $conn->query($query);
         $login = $res->fetch_assoc();
 
