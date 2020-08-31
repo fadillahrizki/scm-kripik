@@ -34,6 +34,7 @@ $html = '
                 <th>#</th>
                 <th>Nama</th>
                 <th>Jumlah</th>
+                <th>Harga</th>
             </tr>
         </thead>
         <tbody>';
@@ -44,6 +45,7 @@ $html = '
                     <td>'.++$k.'</td>
                     <td>'.$p['nama'].'</td>
                     <td>'.$p['jumlah'].' Kg</td>
+                    <td>Rp. '.number_format($p['harga']).'</td>
                 </tr>';
                 endforeach;
             else:

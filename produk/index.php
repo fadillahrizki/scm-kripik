@@ -95,6 +95,7 @@
                                 <th>No</th>
                                 <th>Nama</th>
                                 <th>Jumlah</th>
+                                <th>Harga</th>
                                 <th>Bahan Baku</th>
                                 <th class="hide-print">Aksi</th>
                             </tr>
@@ -106,6 +107,7 @@
                                     <td><?= ++$k ?></td>
                                     <td><?= $p['nama'] ?></td>
                                     <td><?= $p['jumlah'] ?> Bungkus</td>
+                                    <td>Rp. <?= number_format($p['harga']) ?></td>
                                     <td>
                                         <a href="bahan_baku.php?id=<?=$p['id']?>" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i> Lihat Bahan Baku</a>
                                     </td>
@@ -117,7 +119,7 @@
                                 <?php endforeach ?>
                             <?php else: ?>
                                 <tr class="text-center">
-                                    <td colspan="3">Tidak ada Data</td>
+                                    <td colspan="6">Tidak ada Data</td>
                                 </tr>
                             <?php endif ?>
                         </tbody>

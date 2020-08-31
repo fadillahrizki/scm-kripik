@@ -63,6 +63,15 @@
                           </div>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label>Harga</label>
+                        <div class="input-group mb-3">
+                          <div class="input-group-preppend">
+                            <span class="input-group-text">Rp</span>
+                          </div>
+                          <input type="number" name="harga" value="<?= $produk['harga']?>" oninvalid="setCustomValidity('Field ini harus di isi')" oninput="setCustomValidity('')" class="form-control" required>
+                        </div>
+                    </div>
                     <button class="btn btn-success" name="edit">Tambah</button>
                     <a href="index.php" class="btn btn-warning">Kembali</a>
                 </form>
